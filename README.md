@@ -1,2 +1,4 @@
 # GenesisAI
 center control 
+
+admin 
