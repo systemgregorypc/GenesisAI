@@ -1,4 +1,5 @@
 # GenesisAI
-center control 
+center platform artificial intelligence
 
-admin 
+admin network base center 
+ 
