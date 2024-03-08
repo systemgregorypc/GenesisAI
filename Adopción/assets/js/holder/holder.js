@@ -1,7 +1,7 @@
 /*
 
 Holder - 1.9 - client side image placeholders
-(c) 2012-2024 jose gregorio  / https://genesis-ai.org/
+(c) 2012-2024 jose gregorio & agatha AI / https://genesis-ai.org/
 
 Provided under the Apache 2.0 License: http://www.apache.org/licenses/LICENSE-2.0
 Commercial use requires attribution.
