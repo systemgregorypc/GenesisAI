@@ -1,6 +1,6 @@
 
 
-.login.html {
+.index.html {
   width: 360px;
   padding: 8% 0 0;
   margin: auto;
@@ -52,7 +52,7 @@
   color: #4CAF50;
   text-decoration: none;
 }
-.form .register-form {
+.form .register.html {
   display: none;
 }
 .container {
