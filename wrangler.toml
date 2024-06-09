@@ -9,4 +9,4 @@ database_name = "genesis"
 database_id = "dcd69d53-1064-404b-a88c-601f4eec4402"
 
 [vars]
-SALT_TOKEN = "sadfasdghjyt45645t"
+SALT_TOKEN = ""
