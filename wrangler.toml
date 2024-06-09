@@ -6,7 +6,7 @@ compatibility_date = "2024-06-08"
 [[d1_databases]]
 binding = "DB"
 database_name = "genesis"
-database_id = "dcd69d53-1064-404b-a88c-601f4eec4402"
+database_id = "b75ebb55-7fe5-4503-a81c-640daf2dbf78"
 
 [vars]
 SALT_TOKEN = ""
