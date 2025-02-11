@@ -1,5 +1,5 @@
 name = "genesis"
-main = "src/index.ts"
+main = "ser/server.php"
 compatibility_date = "2024-06-08"
 
 
