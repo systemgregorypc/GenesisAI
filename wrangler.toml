@@ -5,8 +5,10 @@ compatibility_date = "2024-06-08"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "genesis"
-database_id = "b75ebb55-7fe5-4503-a81c-640daf2dbf78"
+database_name = "registro"
+database_id = "a0411c02-07eb-4c79-a0a8-b10e7c4ec6e4"
 
 [vars]
 SALT_TOKEN = ""
+
+
