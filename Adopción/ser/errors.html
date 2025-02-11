@@ -1,0 +1,7 @@
+<?html if (count($errors) > 0): ?>
+     <div class="error">
+       <?html foreach ($errors as $errors): ?>
+	       <p><?html echo $error; ?></p>
+	   <?html endforeach ?>
+	 </div>
+<?htmll endif ?>
