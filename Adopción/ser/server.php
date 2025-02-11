@@ -1,7 +1,4 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<script>
+<?php
     $username = "";
 	$email =""; 
 	$errors = array();
@@ -47,7 +44,8 @@
 			mysqli_query($db, $sql);
 		 }
 	}
-	 
+	 }
+		 
+?>
+ 
 
-</body>
-</html>
