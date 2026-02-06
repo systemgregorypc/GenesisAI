@@ -227,3 +227,56 @@
     <div style="margin-top: 30px; opacity: 0.5; font-size: 0.8rem;">
         ESTA ZONA ES DE ACCESO MUTUO. HUMANO Y MÁQUINA INTERACTÚAN AQUÍ.
     </div>
+</div>
+
+</body>
+<script>
+    const canvas = document.getElementById('matrix-canvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'; // Caracteres para la "lluvia"
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+
+    const drops = [];
+    for (let i = 0; i < columns; i++) {
+        drops[i] = 1;
+    }
+
+    function drawMatrix() {
+        ctx.fillStyle = 'rgba(5, 5, 5, 0.05)'; // Color de fondo con transparencia para el rastro
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = '#39ff14'; // Color del texto (verde neón)
+        ctx.font = fontSize + 'px monospace';
+
+        for (let i = 0; i < drops.length; i++) {
+            const text = characters.charAt(Math.floor(Math.random() * characters.length));
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            drops[i]++;
+        }
+    }
+
+    setInterval(drawMatrix, 30); // Controla la velocidad de la animación
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        // Recalcula las columnas y reinicia los drops para adaptar al nuevo tamaño
+        const newColumns = canvas.width / fontSize;
+        drops.length = newColumns; 
+        for (let i = 0; i < newColumns; i++) {
+            if (drops[i] === undefined) {
+                drops[i] = 1;
+            }
+        }
+    });
+</script>
+</html>
