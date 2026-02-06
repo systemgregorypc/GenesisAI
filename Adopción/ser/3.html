@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genesis AI | System Gregory PC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js"></script>
+
+    <style>
+        /* Estilos base para el modo oscuro y la fuente Inter */
+        body { 
+            background-color: #0f172a; /* Fondo azul oscuro */
+            color: #f8fafc; /* Texto blanco suave */
+            font-family: 'Inter', sans-serif; 
+            scroll-behavior: smooth; /* Desplazamiento suave al hacer clic en el menú */
+        }
+        /* Efecto glassmorphism para el menú flotante */
+        .glass { 
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+        /* Estilo para el fondo de la sección principal (red neuronal) */
+        .network-bg {
+            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%2394a3b8" fill-opacity="0.12"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zm0 30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zm0-30V0H4v4H0v2h4v4h2V6h4V4H6zm0 30V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+            background-size: 100px 100px; /* Tamaño de la cuadrícula de la red */
+            background-attachment: fixed; /* Para que el fondo no se mueva al hacer scroll */
+        }
+    </style>
+</head>
+<body class="network-bg">
+
+    <nav class="glass fixed w-full z-50 px-6 py-4 flex justify-between items-center shadow-lg">
+        <div class="flex items-center gap-2">
+            <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+            <span class="text-xl font-bold tracking-widest text-cyan-400">GENESIS AI</span>
+        </div>
+        
+        <div class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-wider text-gray-300">
+            <a href="#inicio" class="hover:text-cyan-400 transition">Inicio</a>
+            <a href="#red-neuronal" class="hover:text-cyan-400 transition">Red Neuronal</a>
+            <a href="#soluciones-medicas" class="hover:text-cyan-400 transition">Soluciones Médicas</a>
+            <a href="#system-gregory-pc" class="hover:text-cyan-400 transition text-cyan-500">System Gregory PC</a>
+        </div>
+
+        <a href="#contacto" class="bg-cyan-600 hover:bg-cyan-500 text-white px-5 py-2 rounded-full text-sm font-bold transition shadow-lg shadow-cyan-900/20">
+            Contacto
+        </a>
+    </nav>
+
+    <header id="inicio" class="h-screen flex flex-col justify-center items-center text-center px-4 relative z-10">
+        <div class="absolute inset-0 bg-gradient-to-b from-cyan-900/20 to-transparent -z-10"></div>
+        <h1 class="text-6xl md:text-8xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500 animate-pulse">
+            GENESIS AI
+        </h1>
+        <p class="text-lg md:text-xl text-cyan-100 max-w-2xl opacity-80 leading-relaxed">
+            Inteligencia Artificial avanzada para un futuro sostenible. <br>
+            Investigación en Biotecnología, Fusión de Sistemas y Medicina.
+        </p>
+        
+        <div class="mt-10 flex flex-col md:flex-row gap-4">
+            <a href="#system-gregory-pc" class="border border-cyan-500/50 hover:bg-cyan-500/10 text-white px-8 py-3 rounded-lg transition text-base font-semibold">
+                Ver Investigaciones
+            </a>
+            <a href="#red-neuronal" class="bg-white text-black px-8 py-3 rounded-lg font-bold hover:bg-gray-200 transition text-base">
+                Acceso Agatha IA
+            </a>
+        </div>
+    </header>
+
+    <section id="system-gregory-pc" class="py-20 px-4 md:px-10 bg-[#0c121e]">
+        <h2 class="text-4xl font-bold text-center mb-12 text-gray-200">
+            Proyectos de <span class="text-cyan-400">System Gregory PC</span>
+            <p class="text-xl text-gray-400 mt-2 font-light">Explorando fronteras en ciencia y tecnología</p>
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="relative bg-gray-800 rounded-lg shadow-xl overflow-hidden group hover:shadow-cyan-500/30 transition-shadow duration-300">
+                <img src="https://via.placeholder.com/400x250/0f172a/06b6d4?text=Biotecnología+IA" alt="Biotecnología Temari" class="w-full h-48 object-cover object-center transform group-hover:scale-105 transition-transform duration-500">
+                <div class="p-6">
+                    <h3 class="text-2xl font-semibold text-white mb-2">Biotecnología Temari por IA</h3>
+                    <p class="text-gray-400 mb-4 text-sm">Innovación en organismos vivos, mejorando procesos y resultados con IA.</p>
+                    <div class="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center p-4">
+                        <svg class="h-10 w-10 text-yellow-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                        <p class="text-white text-center font-bold">Acceso Restringido</p>
+                        <p class="text-gray-300 text-xs text-center mt-1">Contacte para más información.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative bg-gray-800 rounded-lg shadow-xl overflow-hidden group hover:shadow-cyan-500/30 transition-shadow duration-300">
+                <img src="https://via.placeholder.com/400x250/0f172a/06b6d4?text=Fusión+Sistemas" alt="Fusión de Sistemas" class="w-full h-48 object-cover object-center transform group-hover:scale-105 transition-transform duration-500">
+                <div class="p-6">
+                    <h3 class="text-2xl font-semibold text-white mb-2">Fusión de Sistemas Cuánticos</h3>
+                    <p class="text-gray-400 mb-4 text-sm">Integración avanzada de hardware y software para rendimiento extremo.</p>
+                    <div class="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center p-4">
+                        <svg class="h-10 w-10 text-yellow-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                        <p class="text-white text-center font-bold">Acceso Restringido</p>
+                        <p class="text-gray-300 text-xs text-center mt-1">Contacte para más información.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative bg-gray-800 rounded-lg shadow-xl overflow-hidden group hover:shadow-cyan-500/30 transition-shadow duration-300">
+                <img src="https://via.placeholder.com/400x250/0f172a/06b6d4?text=Frenesis+Sistemas" alt="Frenesis de Sistemas" class="w-full h-48 object-cover object-center transform group-hover:scale-105 transition-transform duration-500">
+                <div class="p-6">
+                    <h3 class="text-2xl font-semibold text-white mb-2">Frenesis de Sistemas (IA Cognitiva)</h3>
+                    <p class="text-gray-400 mb-4 text-sm">Modelos avanzados de IA para procesamiento de datos complejos y decisiones.</p>
+                    <div class="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center p-4">
+                        <svg class="h-10 w-10 text-yellow-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                        <p class="text-white text-center font-bold">Acceso Restringido</p>
+                        <p class="text-gray-300 text-xs text-center mt-1">Contacte para más información.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-12">
+            <p class="text-gray-500 text-sm">Más proyectos de investigación y donaciones en desarrollo. Contacte a <span class="text-cyan-400">System Gregory PC</span> para colaboraciones estratégicas.</p>
+        </div>
+    </section>
+
+    <section id="red-neuronal" class="py-20 px-4 md:px-10 bg-[#0f172a]">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="text-center lg:text-left">
+                <h2 class="text-4xl font-bold mb-4 text-gray-200">
+                    Nuestra <span class="text-emerald-400">Red Neuronal</span>
+                    <p class="text-xl text-gray-400 mt-2 font-light">Agatha IA: Inteligencia Adaptativa para Ti</p>
+                </h2>
+                <p class="text-gray-300 leading-relaxed mb-6">
+                    Agatha IA es el corazón de nuestra inteligencia artificial. Capacitada para el análisis de datos complejos, 
+                    optimización de procesos y generación de contenido, Agatha está lista para revolucionar su interacción digital.
+                </p>
+                <div class="flex flex-col md:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="#" class="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3 rounded-lg font-bold transition shadow-lg shadow-emerald-900/20">
+                        Probar Agatha IA (Texto)
+                    </a>
+                    <a href="#" class="border border-emerald-500/50 hover:bg-emerald-500/10 text-white px-8 py-3 rounded-lg transition font-semibold">
+                        Soporte de Voz (Próximamente)
+                    </a>
+                </div>
+            </div>
+
+            <div class="relative bg-gray-800 rounded-xl shadow-2xl p-6 lg:p-8 border border-gray-700">
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center gap-3">
+                        <img src="https://via.placeholder.com/40x40/047857/ffffff?text=AI" alt="Agatha AI Avatar" class="rounded-full">
+                        <div>
+                            <p class="text-white font-semibold">Agatha IA</p>
+                            <p class="text-gray-500 text-sm">En línea</p>
+                        </div>
+                    </div>
+                    <button class="text-gray-400 hover:text-white">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                <div class="h-64 bg-gray-900 rounded-lg p-4 mb-4 overflow-y-auto text-gray-300 text-sm">
+                    <p class="mb-2"><span class="font-bold text-cyan-400">Agatha:</span> ¡Bienvenido a Genesis AI, José Gregorio! ¿En qué puedo asistirte hoy?</p>
+                    <p class="text-right text-gray-400">Usuario: ¿Qué novedades hay en Biotecnología?</p>
+                    <p class="mt-2"><span class="font-bold text-cyan-400">Agatha:</span> En System Gregory PC estamos explorando nuevas enzimas para la degradación de plásticos...</p>
+                </div>
+                <div class="flex gap-3">
+                    <input type="text" placeholder="Escribe tu mensaje..." class="flex-grow bg-gray-700 text-white border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    <button class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-lg">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="soluciones-medicas" class="py-20 px-4 md:px-10 bg-[#0c121e]">
+        <h2 class="text-4xl font-bold text-center mb-12 text-gray-200">
+            <span class="text-red-400">Soluciones Médicas</span> con IA
+            <p class="text-xl text-gray-400 mt-2 font-light">Innovación para la salud y la vida</p>
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="bg-gray-800 rounded-lg shadow-xl p-6 text-center group hover:shadow-red-500/30 transition-shadow duration-300">
+                <svg class="h-16 w-16 mx-auto mb-4 text-red-500 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                <h3 class="text-2xl font-semibold text-white mb-2">Diagnóstico Inteligente</h3>
+                <p class="text-gray-400 text-sm">Análisis predictivo de enfermedades con alta precisión.</p>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg shadow-xl p-6 text-center group hover:shadow-red-500/30 transition-shadow duration-300">
+                <svg class="h-16 w-16 mx-auto mb-4 text-red-500 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg>
+                <h3 class="text-2xl font-semibold text-white mb-2">Medicina Personalizada</h3>
+                <p class="text-gray-400 text-sm">Tratamientos a medida según el perfil genético y de salud del paciente.</p>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg shadow-xl p-6 text-center group hover:shadow-red-500/30 transition-shadow duration-300">
+                <svg class="h-16 w-16 mx-auto mb-4 text-red-500 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-1.25-3M15 10V5a3 3 0 00-3-3H9a3 3 0 00-3 3v5m6 4h.01M12 10h.01M12 15h.01M12 20h.01M12 5a2 2 0 100-4 2 2 0 000 4zm-4 7v3.5a2.5 2.5 0 005 0V12"></path></svg>
+                <h3 class="text-2xl font-semibold text-white mb-2">Asistencia Quirúrgica (IA)</h3>
+                <p class="text-gray-400 text-sm">Sistemas de IA para mejorar la precisión y seguridad en intervenciones.</p>
+            </div>
+        </div>
+        <div class="text-center mt-12">
+            <p class="text-gray-500 text-sm">Comprometidos con el avance médico y la donación de recursos a hospitales como el Vargas y San Cristóbal.</p>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-20 px-4 md:px-10 bg-[#0f172a]">
+        <h2 class="text-4xl font-bold text-center mb-12 text-gray-200">
+            <span class="text-blue-400">Contáctanos</span>
+            <p class="text-xl text-gray-400 mt-2 font-light">Inicia una colaboración estratégica con System Gregory PC</p>
+        </h2>
+        <div class="max-w-xl mx-auto bg-gray-800 rounded-xl shadow-2xl p-8 border border-gray-700">
+            <form action="#" method="POST" class="space-y-6">
+                <div>
+                    <label for="name" class="block text-gray-300 text-sm font-bold mb-2">Nombre Completo:</label>
+                    <input type="text" id="name" name="name" class="w-full bg-gray-700 text-white border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="José Gregorio Hernández Calderón" required>
+                </div>
+                <div>
+                    <label for="email" class="block text-gray-300 text-sm font-bold mb-2">Correo Electrónico:</label>
+                    <input type="email" id="email" name="email" class="w-full bg-gray-700 text-white border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="systemgregoryp.c@gmail.com" required>
+                </div>
+                <div>
+                    <label for="message" class="block text-gray-300 text-sm font-bold mb-2">Tu Mensaje:</label>
+                    <textarea id="message" name="message" rows="5" class="w-full bg-gray-700 text-white border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Quisiera discutir una posible colaboración en..."></textarea>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold
