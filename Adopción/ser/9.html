@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genesis AI | División Autónoma</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-cyan: #00f2ff; --dark-bg: #050a15; }
+        body { background-color: var(--dark-bg); color: #e2e8f0; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        h1, h2, h3, .tech-font { font-family: 'Orbitron', sans-serif; }
+        
+        #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; }
+        .bg-gradient-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #102a43 0%, #050a15 100%);
+            z-index: -1; opacity: 0.8;
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 242, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="bg-gradient-overlay"></div>
+
+    <nav class="sticky top-0 z-50 bg-slate-950/80 border-b border-cyan-900/30 px-6 py-3 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <span class="tech-font text-xl font-bold text-cyan-400 tracking-tighter">GENESIS AI</span>
+        </div>
+        <div class="hidden lg:flex gap-6 text-[10px] font-bold uppercase tracking-widest">
+            <a href="#" class="hover:text-cyan-400 transition">Inicio</a>
+            <a href="#" class="hover:text-cyan-400 transition text-cyan-500 underline decoration-2">Médico AI</a>
+            <a href="#" class="hover:text-cyan-400 transition">Investigación Autónoma</a>
+            <a href="#" class="hover:text-cyan-400 transition">Soporte Técnico</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="bg-cyan-600 px-4 py-1.5 rounded text-[10px] font-bold hover:bg-cyan-500 transition shadow-[0_0_15px_rgba(0,242,255,0.4)]">OPORTUNIDAD DE INVERSIÓN</button>
+        </div>
+    </nav>
+
+    <header class="py-16 px-6 text-center relative z-10">
+        <div class="inline-block px-3 py-1 mb-4 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-[10px] tech-font text-cyan-400 tracking-widest uppercase">
+            Entidad Tecnológica Autónoma
+        </div>
+        <h1 class="text-6xl md:text-8xl font-bold mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-300 to-blue-500">
+            GENESIS AI
+        </h1>
+        <p class="text-gray-400 max-w-2xl mx-auto mb-8 text-sm md:text-base leading-relaxed">
+            Investigación y desarrollo en Biotecnología, Electrónica y Redes Neuronales. 
+            Una división avanzada impulsada por el ecosistema de <span class="text-white font-bold">System Gregory PC</span>.
+        </p>
+        
+        <div class="max-w-3xl mx-auto rounded-xl overflow-hidden border-2 border-cyan-900/50 shadow-2xl shadow-cyan-500/10">
+            <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/5sP8i21-Nts" title="Genesis AI Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </header>
+
+    <section class="py-12 px-6 relative z-10">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="tech-font text-2xl mb-10 text-white uppercase tracking-widest">Servicios de <span class="text-cyan-400">Desarrollo Autónomo</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-2xl">
+                    <h4 class="tech-font text-cyan-400 mb-4 text-sm">Redes Neuronales</h4>
+                    <p class="text-xs text-gray-400">Implementación de Agatha IA para soluciones autónomas en medicina y gestión de datos.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl">
+                    <h4 class="tech-font text-blue-400 mb-4 text-sm">Sistemas UAV (Drones)</h4>
+                    <p class="text-xs text-gray-400">Diseño industrial y robótica aérea con protocolos de navegación inteligente.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl">
+                    <h4 class="tech-font text-purple-400 mb-4 text-sm">Investigación Temari</h4>
+                    <p class="text-xs text-gray-400">Avances en biotecnología y medicina aplicados mediante el núcleo de Genesis AI.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+        <div class="glass-card p-6 rounded-2xl border-cyan-500/20">
+            <h3 class="tech-font text-cyan-400 text-sm font-bold mb-4 uppercase">Agatha IA (Texto)</h3>
+            <button class="w-full bg-cyan-950/50 border border-cyan-500/30 py-2 rounded text-[10px] font-bold hover:bg-cyan-500 hover:text-black transition">INICIAR CHAT</button>
+        </div>
+        <div class="glass-card p-6 rounded-2xl border-blue-500/20">
+            <h3 class="tech-font text-blue-400 text-sm font-bold mb-4 uppercase">Agatha IA (Voz)</h3>
+            <button class="w-full bg-blue-950/50 border border-blue-500/30 py-2 rounded text-[10px] font-bold hover:bg-blue-500 transition">ACTIVAR VOZ</button>
+        </div>
+        <div class="glass-card p-6 rounded-2xl border-yellow-500/20">
+            <h3 class="tech-font text-yellow-400 text-sm font-bold mb-4 uppercase">Panel de Control</h3>
+            <button class="w-full bg-yellow-950/50 border border-yellow-500/30 py-2 rounded text-[10px] font-bold hover:bg-yellow-500 hover:text-black transition">ENTRAR</button>
+        </div>
+    </main>
+
+    <section class="py-20 px-6 max-w-5xl mx-auto relative z-10">
+        <h2 class="tech-font text-3xl text-center text-cyan-400 font-bold mb-12">ROADMAP DE EXPANSIÓN</h2>
+        <div class="space-y-10 border-l-2 border-cyan-900/50 ml-6 pl-8">
+            <div class="relative"><div class="absolute -left-12 top-1 w-4 h-4 bg-cyan-500 rounded-full shadow-[0_0_10px_#00f2ff]"></div>
+                <h3 class="tech-font text-white text-xs mb-1">Q1: Despliegue Médico AI</h3>
+                <p class="text-[10px] text-gray-500">Consolidación de la división autónoma en el sector salud.</p>
+            </div>
+            <div class="relative"><div class="absolute -left-12 top-1 w-4 h-4 bg-blue-500 rounded-full"></div>
+                <h3 class="tech-font text-white text-xs mb-1">Q2: Producción UAV</h3>
+                <p class="text-[10px] text-gray-500">Escalamiento industrial de la fábrica de drones.</p>
+            </div>
+            <div class="relative"><div class="absolute -left-12 top-1 w-4 h-4 bg-purple-500 rounded-full"></div>
+                <h3 class="tech-font text-white text-xs mb-1">Q3: Proyección México</h3>
+                <p class="text-[10px] text-gray-500">Internacionalización de la marca Genesis AI ante inversores globales.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center py-12 text-[9px] text-gray-600 tracking-widest uppercase relative z-10 border-t border-white/5">
+        <p class="mb-2">© 2026 GENESIS AI | DIVISIÓN AUTÓNOMA DE <span class="text-gray-400">SYSTEM GREGORY PC</span></p>
+        <p class="mt-4">San Cristóbal, Táchira, Venezuela | 0416 11 77334</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 85, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#00f2ff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.4 },
+                "size": { "value": 2.5 },
+                "line_linked": { "enable": true, "distance": 150, "color": "#00aaff", "opacity": 0.3 },
+                "move": { "enable": true, "speed": 3 }
+            },
+            "interactivity": {
+                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html>
