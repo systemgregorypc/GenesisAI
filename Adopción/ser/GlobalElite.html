@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Gregory PC | Global Research & Tech</title>
+    <style>
+        :root {
+            --primary-gold: #d4af37;
+            --tech-blue: #00f2ff;
+            --dark-bg: #0a0a0b;
+            --card-bg: #16161a;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            line-height: 1.6;
+        }
+
+        header {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80');
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 4px solid var(--primary-gold);
+        }
+
+        .logo-text {
+            font-size: 4rem;
+            font-weight: bold;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #ffffff, var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--tech-blue);
+            text-transform: uppercase;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 50px 20px;
+        }
+
+        .vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-gold);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.2);
+        }
+
+        .highlight {
+            color: var(--primary-gold);
+            font-weight: bold;
+        }
+
+        .contact-box {
+            background: linear-gradient(45deg, #16161a, #25252b);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 50px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .btn {
+            background: var(--primary-gold);
+            color: black;
+            padding: 15px 40px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 30px;
+            display: inline-block;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: white;
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-text">SYSTEM GREGORY PC</div>
+    <div class="hero-subtitle">Biotecnología • Fusión Nuclear • Medicina Futurista</div>
+    <p style="max-width: 700px; font-size: 1.2rem; margin-top: 20px;">
+        Investigación avanzada desde Venezuela para el impacto global. 
+        Desarrollando soluciones que desafían los límites de la ciencia actual.
+    </p>
+</header>
+
+<div class="container">
+    <h2 style="text-align: center; font-size: 2.5rem;">Pilares de Innovación</h2>
+    
+    <div class="vision-grid">
+        <div class="card">
+            <h3>🔬 Biotecnología Aplicada</h3>
+            <p>Liderando investigaciones sobre regeneración y genética. Proyectos diseñados para transformar la medicina moderna.</p>
+        </div>
+        <div class="card">
+            <h3>⚡ Energía de Fusión</h3>
+            <p>Explorando fronteras en energía limpia y eficiente. Ciencia de alto nivel para un planeta autosustentable.</p>
+        </div>
+        <div class="card">
+            <h3>🩺 Compromiso Social</h3>
+            <p>Meta filantrópica establecida de <span class="highlight">$1.3 Millones USD</span> para equipos de Rayos X y medicinas en Hospital Central de San Cristóbal y Hospital Vargas de Caracas.</p>
+        </div>
+    </div>
+
+    <div class="contact-box">
+        <h2>Contacto Ejecutivo Nacional e Internacional</h2>
+        <p>Atención directa para líderes globales y socios inversionistas.</p>
+        <p style="font-size: 1.5rem;" class="highlight">José Gregorio Hernández Calderón</p>
+        <p>Investigador Principal & Técnico Especialista</p>
+        <p>📞 +58 0416 1177334 | 📧 systemgregoryp.c@gmail.com</p>
+        <a href="mailto:systemgregoryp.c@gmail.com" class="btn">SOLICITAR PORTAFOLIO DE INVESTIGACIÓN</a>
+    </div>
+</div>
+
+<footer>
+    &copy; 2026 System Gregory PC | Sede Central: San Cristóbal, Táchira. 
+</footer>
+
+</body>
+</html>
