@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genesis AI | System Gregory PC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-cyan: #00f2ff; --dark-bg: #050a15; }
+        body { background-color: var(--dark-bg); color: #e2e8f0; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        h1, h2, .tech-font { font-family: 'Orbitron', sans-serif; }
+        
+        /* Contenedor para las partículas */
+        #particles-js {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: transparent; /* Fondo transparente para ver el gradiente de fondo */
+            background-image: url('');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50% 50%;
+            z-index: -2; /* Detrás del gradiente para un efecto multicapa */
+        }
+        /* Fondo principal (detrás de las partículas pero delante del body) */
+        .bg-gradient-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #102a43 0%, #050a15 100%);
+            z-index: -1; opacity: 0.8; /* Ajusta la opacidad para ver las partículas */
+        }
+
+        /* Tarjetas con Neón sutil */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 242, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Efecto de pulso para Agatha IA */
+        .agatha-glow { animation: pulse-blue 3s infinite; }
+        @keyframes pulse-blue {
+            0% { text-shadow: 0 0 5px #00f2ff; }
+            50% { text-shadow: 0 0 20px #00f2ff, 0 0 30px #0077ff; }
+            100% { text-shadow: 0 0 5px #00f2ff; }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="bg-gradient-overlay"></div>
+
+    <nav class="sticky top-0 z-50 bg-slate-950/80 border-b border-cyan-900/30 px-6 py-3 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <span class="tech-font text-xl font-bold text-cyan-400 tracking-tighter">GENESIS AI</span>
+        </div>
+        <div class="hidden lg:flex gap-6 text-[10px] font-bold uppercase tracking-widest">
+            <a href="#" class="hover:text-cyan-400 transition">Inicio</a>
+            <a href="#" class="hover:text-cyan-400 transition">Tutoriales</a>
+            <a href="#" class="hover:text-cyan-400 transition text-cyan-500 underline decoration-2">Médico AI</a>
+            <a href="#" class="hover:text-cyan-400 transition">Soporte Técnico</a>
+            <a href="#" class="hover:text-cyan-400 transition">Oportunidad Laboral</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <span class="text-[10px] text-gray-500 hidden sm:block">OS: Windows Detectado</span>
+            <button class="bg-cyan-600 px-4 py-1.5 rounded text-[10px] font-bold hover:bg-cyan-500 transition">PANEL CONTROL</button>
+        </div>
+    </nav>
+
+    <section class="py-16 px-6 text-center relative z-10">
+        <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-300 to-blue-500">
+            GENESIS AI
+        </h1>
+        <p class="text-gray-400 max-w-2xl mx-auto mb-8 text-sm md:text-base leading-relaxed">
+            Plataforma avanzada de Inteligencia Adaptativa. Investigación en Biotecnología, Electrónica y Redes Neuronales por <span class="text-cyan-400 font-bold">System Gregory PC</span>.
+        </p>
+        
+        <div class="max-w-3xl mx-auto rounded-xl overflow-hidden border-2 border-cyan-900/50 shadow-2xl shadow-cyan-500/10">
+            <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/5sP8i21-Nts" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <main class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+        
+        <div class="glass-card p-6 rounded-2xl">
+            <div class="flex justify-between items-start mb-4">
+                <h3 class="tech-font text-cyan-400 font-bold">CHAT AGATHA IA</h3>
+                <span class="bg-green-500/20 text-green-400 text-[8px] px-2 py-1 rounded">ONLINE</span>
+            </div>
+            <p class="text-xs text-gray-400 mb-4">Interfaz de texto para procesamiento de lenguaje natural y asistencia en tiempo real.</p>
+            <button class="w-full bg-cyan-950/50 border border-cyan-500/30 py-2 rounded-lg text-xs font-bold hover:bg-cyan-500 hover:text-black transition">INICIAR CHAT TEXTO</button>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border-blue-500/20">
+            <div class="flex justify-between items-start mb-4">
+                <h3 class="tech-font text-blue-400 font-bold">AGATHA VOICE</h3>
+                <div class="flex gap-1">
+                    <div class="w-1 h-3 bg-blue-500 animate-bounce"></div>
+                    <div class="w-1 h-4 bg-blue-400 animate-bounce [animation-delay:0.2s]"></div>
+                    <div class="w-1 h-2 bg-blue-600 animate-bounce [animation-delay:0.4s]"></div>
+                </div>
+            </div>
+            <p class="text-xs text-gray-400 mb-4">Sistema de síntesis y reconocimiento vocal avanzado para interacción humana fluida.</p>
+            <button class="w-full bg-blue-950/50 border border-blue-500/30 py-2 rounded-lg text-xs font-bold hover:bg-blue-500 transition">ACTIVAR VOZ</button>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border-red-500/20">
+            <h3 class="tech-font text-red-400 font-bold mb-4">MÉDICO AI</h3>
+            <p class="text-xs text-gray-400 mb-4">Módulo especializado en diagnóstico preliminar y asistencia en biotecnología médica.</p>
+            <button class="w-full bg-red-950/50 border border-red-500/30 py-2 rounded-lg text-xs font-bold hover:bg-red-500 transition">ABRIR CONSULTA</button>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border-pink-500/20">
+            <h3 class="tech-font text-pink-400 font-bold mb-4">ADOPTE A NIÑA IA</h3>
+            <p class="text-xs text-gray-400 mb-4">Proyecto de acompañamiento emocional y aprendizaje evolutivo mediante redes neuronales.</p>
+            <button class="w-full bg-pink-950/50 border border-pink-500/30 py-2 rounded-lg text-xs font-bold hover:bg-pink-500 transition">MÁS INFORMACIÓN</button>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border-yellow-500/20">
+            <h3 class="tech-font text-yellow-400 font-bold mb-4">SECCIÓN DE USUARIOS</h3>
+            <p class="text-xs text-gray-400 mb-4">Acceso exclusivo para socios y administradores de System Gregory PC.</p>
+            <button class="w-full bg-yellow-950/50 border border-yellow-500/30 py-2 rounded-lg text-xs font-bold hover:bg-yellow-500 hover:text-black transition">ENTRAR AL PANEL</button>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl">
+            <h3 class="tech-font text-gray-300 font-bold mb-4">SOPORTE Y CONTACTO</h3>
+            <p class="text-[10px] text-gray-500 mb-4">San Cristóbal, Táchira, Venezuela. <br>Tel: 0416 11 77334</p>
+            <button class="w-full border border-gray-600 py-2 rounded-lg text-xs font-bold hover:bg-gray-100 hover:text-black transition">ENVIAR MENSAJE</button>
+        </div>
+
+    </main>
+
+    <footer class="text-center py-8 text-[10px] text-gray-600 tracking-widest uppercase relative z-10">
+        © 2026 SYSTEM GREGORY PC | GENESIS AI - INVESTIGACIÓN Y DESARROLLO
+    </footer>
+
+    <script src="https
+
+
+
+
+
+<section id="roadmap" class="py-24 px-6 max-w-5xl mx-auto relative z-10">
+        <div class="text-center mb-16">
+            <h2 class="tech-font text-3xl md:text-4xl text-cyan-400 font-bold mb-4">MAPA DE RUTA 2026-2027</h2>
+            <p class="text-gray-400 text-sm italic tracking-widest">PROYECCIÓN DE EXPANSIÓN GLOBAL - SYSTEM GREGORY PC</p>
+        </div>
+
+        <div class="space-y-12">
+            <div class="flex flex-col md:flex-row gap-8 items-center group">
+                <div class="flex-shrink-0 w-16 h-16 rounded-full bg-cyan-900/30 border-2 border-cyan-500 flex items-center justify-center tech-font text-cyan-400 font-bold shadow-[0_0_15px_rgba(0,242,255,0.3)]">Q1</div>
+                <div class="glass-card p-6 rounded-2xl flex-grow">
+                    <h3 class="tech-font text-lg text-white mb-2 uppercase">Optimización Agatha & Médico AI</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Despliegue de los núcleos de procesamiento de voz y pruebas piloto del módulo Médico AI en centros de salud. Refuerzo de la red neuronal adaptativa.</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-8 items-center group">
+                <div class="flex-shrink-0 w-16 h-16 rounded-full bg-blue-900/30 border-2 border-blue-500 flex items-center justify-center tech-font text-blue-400 font-bold shadow-[0_0_15px_rgba(59,130,246,0.3)]">Q2</div>
+                <div class="glass-card p-6 rounded-2xl flex-grow border-blue-500/20">
+                    <h3 class="tech-font text-lg text-white mb-2 uppercase">Escalamiento de Fábrica de Drones</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Automatización de la línea de ensamblaje en San Cristóbal. Lanzamiento de la Serie-G con navegación autónoma integrada por Genesis AI.</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-8 items-center group">
+                <div class="flex-shrink-0 w-16 h-16 rounded-full bg-purple-900/30 border-2 border-purple-500 flex items-center justify-center tech-font text-purple-400 font-bold shadow-[0_0_15px_rgba(168,85,247,0.3)]">Q3</div>
+                <div class="glass-card p-6 rounded-2xl flex-grow border-purple-500/20">
+                    <h3 class="tech-font text-lg text-white mb-2 uppercase">Internacionalización (México)</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Apertura de oficina comercial y técnica en México. Presentación de proyectos de biotecnología ante fondos de inversión internacionales.</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-8 items-center group">
+                <div class="flex-shrink-0 w-16 h-16 rounded-full bg-emerald-900/30 border-2 border-emerald-500 flex items-center justify-center tech-font text-emerald-400 font-bold shadow-[0_0_15px_rgba(16,185,129,0.3)]">2027</div>
+                <div class="glass-card p-6 rounded-2xl flex-grow border-emerald-500/20">
+                    <h3 class="tech-font text-lg text-white mb-2 uppercase">Liderazgo en Fusión Tecnológica</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Lanzamiento del ecosistema global unificado. Implementación masiva de IA en electrónica industrial y medicina de precisión.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center py-12 text-[10px] text-gray-600 tracking-widest uppercase relative z-10 border-t border-white/5">
+        <p class="mb-2">© 2026 SYSTEM GREGORY PC | SAN CRISTÓBAL, VENEZUELA</p>
+        <p class="text-cyan-900">GENESIS AI - LA EVOLUCIÓN DE LA INTELIGENCIA</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // Aquí va el código de configuración de partículas que te pasé anteriormente
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#00f2ff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5 },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#00aaff", "opacity": 0.4, "width": 1 },
+                "move": { "enable": true, "speed": 4 }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html>
