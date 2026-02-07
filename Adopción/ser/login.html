@@ -1,42 +1,37 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Login - GENESIS AI</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <style>
-        body { background: #0e0e0e; color: white; font-family: sans-serif; text-align: center; padding-top: 80px; }
-        .box { background: #111; padding: 30px; border: 1px solid #6133FF; max-width: 350px; margin: auto; border-radius: 10px; }
-        input { width: 90%; padding: 10px; margin: 10px 0; background: #000; border: 1px solid #333; color: white; }
-        .btn { background: #6133FF; color: white; border: none; padding: 12px; width: 100%; cursor: pointer; }
-    </style>
-</head>
-<body>
-    <div class="box">
-        <h2>Entrar al Núcleo</h2>
-        <input type="text" id="user" placeholder="ID Usuario">
-        <input type="password" id="pass" placeholder="Password">
-        <button class="btn" onclick="entrar()">IDENTIFICARSE</button>
-        <p><a href="registrar.html" style="color:#6133FF">Registrarme</a></p>
-    </div>
+<script>
+async function entrar() {
+    const u = document.getElementById('user').value;
+    const p = document.getElementById('pass').value;
 
-    <script>
-    async function entrar() {
-        const u = document.getElementById('user').value;
-        const p = document.getElementById('pass').value;
+    if(!u || !p) return alert("Agatha: Ingresa tus credenciales.");
 
+    try {
         const res = await fetch('/api/auth', {
             method: 'POST',
-            body: JSON.stringify({ username: u, password: p, action: 'login' })
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                username: u, 
+                password: p, 
+                action: 'login' 
+            })
         });
+
+        // Intentamos leer la respuesta del servidor
+        const data = await res.json();
 
         if(res.ok) {
             alert("Acceso concedido. Agatha te reconoce.");
+            // Guardamos el nombre para que la web lo recuerde (opcional)
+            sessionStorage.setItem('usuario', u);
             window.location.href = "index.html";
         } else {
-            alert("Identidad no confirmada.");
+            // Si el login falla, Agatha nos dirá por qué
+            alert("Agatha: " + (data.error || "Identidad no confirmada."));
         }
+    } catch (err) {
+        // Aquí es donde atrapamos la "X roja" o fallos de red
+        alert("Fallo de conexión: El núcleo no responde. Revisa si el archivo auth.js está en /functions/api/");
+        console.error("Error en el fetch:", err);
     }
-    </script>
-</body>
-</html>
+}
+</script>
