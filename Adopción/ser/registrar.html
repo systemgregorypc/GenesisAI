@@ -46,7 +46,7 @@
 
         try {
             // AJUSTE DE RUTA: ../../ sube dos niveles desde /ser/ hacia la raíz
-            const res = await fetch('../../api/auth', {
+            const res = await fetch('../api/auth', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
