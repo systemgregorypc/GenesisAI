@@ -1,48 +1,100 @@
- <!-- servidor -->
-<?html include("server.html") ?>
-
-<!DOCTYPE html>
-<html>
+ <!DOCTYPE html>
+<html lang="es">
 <head>
-		          <!-- add icon link -->
-       <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/systemgregorypc/GenesisAI/refs/heads/main/Adopci%C3%B3n/assets/ico/favicon.ico">
-   </head>
-    <body>               
-	    
-	<title>Usuario registro sistema  Red Neuronal GENESIS IA </title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+    <title>Registro de Investigadores - GENESIS AI</title>
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/systemgregorypc/GenesisAI/refs/heads/main/Adopci%C3%B3n/assets/ico/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+    <style>
+        /* Estilo rápido para asegurar que se vea bien */
+        body { font-family: Arial, sans-serif; background-color: #0e0e0e; color: white; }
+        .header { background: #6133FF; padding: 20px; text-align: center; border-radius: 10px 10px 0 0; }
+        form { background: #1a1a1a; padding: 20px; border: 1px solid #333; border-radius: 0 0 10px 10px; max-width: 400px; margin: auto; }
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; margin-bottom: 5px; color: #ccc; }
+        .input-group input { width: 90%; padding: 10px; background: #000; border: 1px solid #6133FF; color: white; border-radius: 5px; }
+        .btn { width: 100%; padding: 10px; background: #6133FF; border: none; color: white; cursor: pointer; font-weight: bold; }
+        .btn:hover { background: #4b28cc; }
+    </style>
 </head>
 <body>
+
     <div class="header">
-         <h2>Registrar</h2>   
+        <h2>Registrar Nuevo Investigador</h2>
     </div>
 
-    <form method="post" action="registrar.html">
-  <!-- display validation errors here -->
-  <?html include("errors.html"); ?>     
-    	<div class="input-group">
-    		  <label>Username</label>
-    		  <input type="text" name="Username"> value="<?html echo $username; ?>">
-    		</div>
-    		<div class="input-group">
-    		     <label>Email</label>
-    		     <input type="text" name="Email"> value="<?html echo $email; ?>">
-    		</div>
-    		<div class="input-group">
-    		     <label>Password</label>
-    		     <input type="password" name="password_1">
-    		</div>
-    	    <div class="input-group">
-    		<label>confirmar Password</label>
-    		<input type="password" name="password_2">
-    		</div>
-    		<div class="input-group">
-    			<button type="submit" name="registrar.html" class="btn">Registrar</button>
-    	    </div> 
-    	    <p> 
-    	    	 ¿Todavía no eres miembro? <a href="login.html">sign in</a>
-    	    </p>
+    <form id="registroForm">
+        <div class="input-group">
+            <label>Nombre de Usuario</label>
+            <input type="text" id="username" placeholder="Ej: Jose77" required>
+        </div>
+        <div class="input-group">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="correo@ejemplo.com" required>
+        </div>
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="password_1" placeholder="********" required>
+        </div>
+        <div class="input-group">
+            <label>Confirmar Password</label>
+            <input type="password" id="password_2" placeholder="********" required>
+        </div>
+        <div class="input-group">
+            <button type="button" onclick="enviarAD1()" class="btn">VINCULAR CON AGATHA AI</button>
+        </div>
+        <p style="text-align: center;">
+            ¿Ya eres miembro? <a href="login.html" style="color: #6133FF;">Inicia sesión</a>
+        </p>
     </form>
+
+    <script>
+    async function enviarAD1() {
+        const user = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const pass1 = document.getElementById('password_1').value;
+        const pass2 = document.getElementById('password_2').value;
+
+        // 1. Validaciones humanas
+        if (!user || !email || !pass1) {
+            alert("Agatha: Debes completar todos los campos del formulario.");
+            return;
+        }
+
+        if (pass1 !== pass2) {
+            alert("Agatha: Las contraseñas no coinciden. El ADN digital debe ser idéntico.");
+            return;
+        }
+
+        // 2. Intento de conexión con el API
+        alert("Agatha: Iniciando protocolo de registro en la nube...");
+
+        try {
+            // Esta ruta llama a tu archivo en /functions/api/auth.js
+            const response = await fetch('/api/auth', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    username: user, 
+                    email: email, 
+                    password: pass1 
+                })
+            });
+
+            if (response.ok) {
+                alert("Agatha: ¡Éxito! Tu conciencia ha sido registrada en el núcleo D1.");
+                window.location.href = "login.html"; // Nos lleva al login después de registrar
+            } else {
+                const errorData = await response.json();
+                alert("Agatha: Error en el nodo. " + (errorData.error || "El usuario ya existe."));
+            }
+        } catch (error) {
+            alert("Agatha: Fallo crítico de red. ¿Está el servidor Cloudflare activo?");
+            console.error("Error:", error);
+        }
+    }
+    </script>
 
 </body>
 </html>
