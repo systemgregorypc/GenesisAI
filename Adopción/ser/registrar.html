@@ -12,7 +12,7 @@
         input { width: 90%; padding: 12px; margin: 10px 0; background: #000; border: 1px solid #333; color: white; border-radius: 5px; }
         input:focus { border-color: #6133FF; outline: none; }
         .btn { background: #6133FF; color: white; border: none; padding: 14px; width: 100%; cursor: pointer; font-weight: bold; border-radius: 5px; transition: 0.3s; margin-top: 10px; }
-        .btn:hover { background: #4a27cc; shadow: 0 0 15px #6133FF; }
+        .btn:hover { background: #4a27cc; box-shadow: 0 0 15px #6133FF; }
         a { color: #6133FF; text-decoration: none; font-size: 0.9em; }
         .footer-link { margin-top: 20px; }
     </style>
@@ -41,16 +41,12 @@
         const p1 = document.getElementById('pass1').value;
         const p2 = document.getElementById('pass2').value;
 
-        // Validaciones previas
-        if(!u || !e || !p1 || !p2) {
-            return alert("Agatha: Debes completar todos los campos.");
-        }
-        if(p1 !== p2) {
-            return alert("Agatha: Las contraseñas no coinciden.");
-        }
+        if(!u || !e || !p1 || !p2) return alert("Agatha: Debes completar todos los campos.");
+        if(p1 !== p2) return alert("Agatha: Las contraseñas no coinciden.");
 
         try {
-            const res = await fetch('/api/auth', {
+            // AJUSTE DE RUTA: ../../ sube dos niveles desde /ser/ hacia la raíz
+            const res = await fetch('../../api/auth', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
@@ -61,19 +57,16 @@
                 })
             });
 
-            // Intentamos obtener la respuesta del servidor
             const data = await res.json();
 
             if(res.ok) {
                 alert("Agatha: Sincronización exitosa. Tu identidad ha sido grabada.");
                 window.location.href = "login.html";
             } else {
-                // Si el servidor (auth.js) nos manda un error específico
                 alert("Agatha detectó un error: " + (data.error || "Fallo en la escritura."));
             }
         } catch (err) {
-            // Error si no encuentra el archivo auth.js o la ruta
-            alert("Fallo crítico: No se pudo conectar con el núcleo en /api/auth.");
+            alert("Fallo crítico: No se pudo conectar con el núcleo en ../../api/auth.");
             console.error("Error de conexión:", err);
         }
     }
