@@ -56,7 +56,7 @@
                 alert("Acceso concedido. Agatha te reconoce.");
                 // Guardamos el estado en el navegador
                 sessionStorage.setItem('usuario', u);
-                window.location.href = "index.html";
+                window.location.href = "panel.html";
             } else {
                 // Mensaje de error desde la base de datos D1
                 alert("Agatha: " + (data.error || "Identidad no confirmada."));
