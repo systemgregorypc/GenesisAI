@@ -4,56 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Control - GENESIS AI</title>
+    <link rel="stylesheet" type="text/css" href="genesis-style.css">
     <style>
-        body { background: #050505; color: #00ff41; font-family: 'Courier New', monospace; padding: 20px; }
-        .dashboard { border: 1px solid #6133FF; padding: 20px; border-radius: 10px; background: #0a0a0a; box-shadow: 0 0 20px rgba(97, 51, 255, 0.1); }
-        .header { border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 20px; }
-        h1 { color: #6133FF; font-size: 1.5em; }
-        .stat-card { background: #111; padding: 15px; border-left: 4px solid #6133FF; margin-bottom: 15px; }
-        .btn-exit { background: #ff3333; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; }
-        .btn-update { background: #6133FF; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; }
+        body { background: #0e0e0e; color: white; font-family: 'Segoe UI', sans-serif; text-align: center; padding-top: 50px; }
+        .container { background: #1a1a1a; padding: 40px; border: 2px solid #6133FF; max-width: 600px; margin: auto; border-radius: 20px; box-shadow: 0 0 30px rgba(97, 51, 255, 0.3); }
+        h1 { color: #6133FF; text-shadow: 0 0 10px #6133FF; }
+        .user-info { margin: 20px 0; padding: 15px; background: #000; border-radius: 10px; border-left: 5px solid #6133FF; }
+        .btn-logout { background: #ff3333; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; margin-top: 20px; }
     </style>
 </head>
 <body>
-    <div class="dashboard">
-        <div class="header">
-            <h1>NÚCLEO DE CONTROL - AGATHA</h1>
-            <p>Estado del Ser: <span id="user-status">Iniciando...</span></p>
+    <div class="container">
+        <h1>SISTEMA GÉNESIS AI</h1>
+        <p>Investigación en Biotecnología y Medicina</p>
+        
+        <div class="user-info">
+            <p>Estado del Núcleo: <span style="color: #00ff00;">ACTIVO</span></p>
+            <p>Investigador: <span id="display-user">Cargando...</span></p>
         </div>
 
-        <div class="stat-card">
-            <h3>Investigación Biotecnológica</h3>
-            <p>Estado de los Sensores: <span style="color: #6133FF;">ACTIVOS</span></p>
-            <p id="biotech-status">Esperando entrada de datos del investigador...</p>
+        <div id="content">
+            <p>Bienvenido al centro de mando, José Gregorio.</p>
         </div>
 
-        <div class="stat-card">
-            <h3>Base de Datos D1</h3>
-            <p>ID del Nodo: 8dbb39ad-2784-445d-a092-5785e7888fb8</p>
-            <p>Sincronización: <span id="db-status">ONLINE</span></p>
-        </div>
-
-        <div style="margin-top: 30px;">
-            <button class="btn-update" onclick="location.reload()">REFRESCAR NÚCLEO</button>
-            <button class="btn-exit" onclick="salir()">CERRAR SESIÓN</button>
-        </div>
+        <button class="btn-logout" onclick="logout()">DESCONECTAR NÚCLEO</button>
     </div>
 
     <script>
-        // Verificación de identidad al entrar
-        const usuarioActivo = sessionStorage.getItem('usuario');
-        
-        if (!usuarioActivo) {
-            alert("Acceso denegado. Agatha no detecta tu identidad.");
+        // Al cargar, verificamos si hay una sesión activa
+        window.onload = function() {
+            const user = sessionStorage.getItem('usuario');
+            if (!user) {
+                alert("Acceso denegado. Por favor, identifícate.");
+                window.location.href = "login.html";
+            } else {
+                document.getElementById('display-user').innerText = user;
+            }
+        };
+
+        function logout() {
+            sessionStorage.removeItem('usuario');
             window.location.href = "login.html";
-        } else {
-            document.getElementById('user-status').innerText = "Bienvenido, Investigador " + usuarioActivo;
         }
 
-        function salir() {
-            sessionStorage.clear();
-            alert("Desconectando del Ser...");
-            window.location.href = "login.html";
+        // Si en el futuro necesitas que el panel le pida datos a Agatha (D1):
+        async function consultarAgatha() {
+            try {
+                const res = await fetch('/api/auth', { // Ruta simplificada a la raíz
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'check_status' })
+                });
+                const data = await res.json();
+                console.log("Respuesta de Agatha:", data);
+            } catch (err) {
+                console.error("Error de conexión con el núcleo");
+            }
         }
     </script>
 </body>
