@@ -1,48 +1,40 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Registro - GENESIS AI</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <style>
-        body { background: #0e0e0e; color: white; font-family: sans-serif; text-align: center; padding-top: 50px; }
-        .box { background: #1a1a1a; padding: 30px; border: 1px solid #6133FF; max-width: 350px; margin: auto; border-radius: 10px; }
-        input { width: 90%; padding: 10px; margin: 10px 0; background: #000; border: 1px solid #333; color: white; }
-        .btn { background: #6133FF; color: white; border: none; padding: 12px; width: 100%; cursor: pointer; font-weight: bold; }
-    </style>
-</head>
-<body>
-    <div class="box">
-        <h2>Crear Identidad</h2>
-        <input type="text" id="user" placeholder="Usuario" required>
-        <input type="email" id="email" placeholder="Correo" required>
-        <input type="password" id="pass1" placeholder="Contraseña" required>
-        <input type="password" id="pass2" placeholder="Confirmar" required>
-        <button class="btn" onclick="registrar()">VINCULAR CON AGATHA</button>
-        <p><a href="login.html" style="color:#6133FF">Ya tengo cuenta</a></p>
-    </div>
+<script>
+async function registrar() {
+    const u = document.getElementById('user').value;
+    const e = document.getElementById('email').value;
+    const p1 = document.getElementById('pass1').value;
+    const p2 = document.getElementById('pass2').value;
 
-    <script>
-    async function registrar() {
-        const u = document.getElementById('user').value;
-        const e = document.getElementById('email').value;
-        const p1 = document.getElementById('pass1').value;
-        const p2 = document.getElementById('pass2').value;
+    // 1. Validación básica
+    if(!u || !e || !p1) return alert("Agatha: Faltan datos obligatorios.");
+    if(p1 !== p2) return alert("Agatha: Las claves no coinciden.");
 
-        if(p1 !== p2) return alert("Las claves no coinciden.");
-
+    try {
+        // 2. Intento de conexión al API
         const res = await fetch('/api/auth', {
             method: 'POST',
-            body: JSON.stringify({ username: u, email: e, password: p1, action: 'register' })
+            headers: { 'Content-Type': 'application/json' }, // Es importante avisar que enviamos JSON
+            body: JSON.stringify({ 
+                username: u, 
+                email: e, 
+                password: p1, 
+                action: 'register' 
+            })
         });
 
+        const data = await res.json();
+
         if(res.ok) {
-            alert("Agatha: Bienvenido al sistema.");
+            alert("Agatha: ¡Sincronización Exitosa! Bienvenido.");
             window.location.href = "login.html";
         } else {
-            alert("Error en registro.");
+            // 3. Si el servidor responde pero con error (ej: 500 o 400)
+            alert("Agatha dice: " + (data.error || "Error desconocido en el nodo."));
         }
+    } catch (err) {
+        // 4. Si ni siquiera pudo llegar al servidor (ej: error de red o 404)
+        alert("Fallo crítico: No se pudo contactar con el núcleo Agatha. Verifica la ruta /api/auth");
+        console.error("Error de red:", err);
     }
-    </script>
-</body>
-</html>
+}
+</script>
