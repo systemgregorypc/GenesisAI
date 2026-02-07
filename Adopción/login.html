@@ -42,7 +42,7 @@
 
         try {
             // RUTA CORREGIDA: ../ sube a Adopción/ donde Cloudflare activa /api/
-            const res = await fetch('../api/auth', {
+            const res = await fetch('/api/auth', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
