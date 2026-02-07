@@ -1,5 +1,5 @@
 export async function onRequest(context) {
-  // Respuesta para la verificación del navegador (CORS)
+  // Soporte para CORS (evita bloqueos del navegador)
   if (context.request.method === "OPTIONS") {
     return new Response(null, {
       headers: {
@@ -19,7 +19,7 @@ export async function onRequestPost(context) {
     const data = await request.json();
     const { username, email, password, action } = data;
 
-    // Metadatos que Agatha recolecta automáticamente
+    // Recolección de datos técnicos por Agatha
     const ip = request.headers.get("cf-connecting-ip") || "0.0.0.0";
     const os = request.headers.get("user-agent") || "Desconocido";
     const ciudad = request.cf ? request.cf.city : "Desconocida";
@@ -28,7 +28,8 @@ export async function onRequestPost(context) {
 
     // --- MÓDULO DE LOGIN ---
     if (action === 'login') {
-      const userRecord = await env.DB.prepare(
+      // Usamos env.db en minúsculas como configuraste
+      const userRecord = await env.db.prepare(
         "SELECT * FROM user WHERE username = ? AND password = ?"
       ).bind(username, password).first();
 
@@ -44,12 +45,12 @@ export async function onRequestPost(context) {
 
     // --- MÓDULO DE REGISTRO ---
     if (action === 'register') {
-      // Verificamos que no falten datos básicos
       if (!username || !email || !password) {
-        return new Response(JSON.stringify({ error: "Faltan datos obligatorios" }), { status: 400 });
+        return new Response(JSON.stringify({ error: "Faltan datos" }), { status: 400 });
       }
 
-      await env.DB.prepare(
+      // Insertar en la tabla 'user' que creaste anoche
+      await env.db.prepare(
         "INSERT INTO user (username, email, password, fecha, ip, sistema, ubicacion, red) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
       ).bind(
         username, 
@@ -69,8 +70,8 @@ export async function onRequestPost(context) {
     }
 
   } catch (error) {
-    // Agatha nos dirá exactamente qué tornillo está flojo
-    return new Response(JSON.stringify({ error: "Error en el núcleo: " + error.message }), { 
+    // Si algo falla, Agatha te dirá si es la tabla o el código
+    return new Response(JSON.stringify({ error: "Fallo en el núcleo: " + error.message }), { 
         status: 500,
         headers: { "Content-Type": "application/json" }
     });
