@@ -41,11 +41,15 @@
         const p1 = document.getElementById('pass1').value;
         const p2 = document.getElementById('pass2').value;
 
-        if(!u || !e || !p1 || !p2) return alert("Agatha: Debes completar todos los campos.");
-        if(p1 !== p2) return alert("Agatha: Las contraseñas no coinciden.");
+        if(!u || !e || !p1 || !p2) {
+            return alert("Agatha: Debes completar todos los campos.");
+        }
+        if(p1 !== p2) {
+            return alert("Agatha: Las contraseñas no coinciden.");
+        }
 
         try {
-            // AJUSTE DE RUTA: ../../ sube dos niveles desde /ser/ hacia la raíz
+            // RUTA CORREGIDA: ../ sale de 'ser' y busca 'api' en la raíz de 'Adopción'
             const res = await fetch('../api/auth', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -66,7 +70,8 @@
                 alert("Agatha detectó un error: " + (data.error || "Fallo en la escritura."));
             }
         } catch (err) {
-            alert("Fallo crítico: No se pudo conectar con el núcleo en ../../api/auth.");
+            // Este error ocurre si la carpeta 'functions' no está activa en Cloudflare
+            alert("Fallo crítico: No se pudo conectar con el núcleo en ../api/auth.");
             console.error("Error de conexión:", err);
         }
     }
