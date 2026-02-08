@@ -23,7 +23,7 @@ export async function onRequestPost(context) {
         if (action === 'register') {
             try {
                 // Insertamos el nuevo investigador en la tabla 'usuarios'
-                await env.DB.prepare(
+                await env.db.prepare(
                     "INSERT INTO usuarios (username, email, password) VALUES (?, ?, ?)"
                 ).bind(username, email, password).run();
 
@@ -47,7 +47,7 @@ export async function onRequestPost(context) {
         // --- MÓDULO DE LOGIN ---
         if (action === 'login') {
             // Buscamos al usuario en la base de datos D1
-            const user = await env.DB.prepare(
+            const user = await env.db.prepare(
                 "SELECT * FROM usuarios WHERE username = ? AND password = ?"
             ).bind(username, password).first();
 
