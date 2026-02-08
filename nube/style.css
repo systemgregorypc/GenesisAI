@@ -1,4 +1,111 @@
-body {
-  margin: 20px;
+/* Reset básico para que no haya espacios fantasma */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Fundamental para que los inputs no se salgan */
 }
-          
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    background: #F8F8FF;
+}
+
+/* --- DISEÑO DE LA BARRA DE MENÚ (NAVBAR) --- */
+.navbar {
+    background: #5F9EA0;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    position: sticky; /* Se queda arriba al bajar */
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-logo {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* --- DISEÑO DEL FORMULARIO (Tu estilo original mejorado) --- */
+.auth-page {
+    margin-top: 50px; /* Espacio para que no choque con la barra */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {  
+    width: 90%;
+    max-width: 400px;
+    color: white;
+    background: #5F9EA0;
+    text-align: center;
+    border: 1px solid #B0C4DE;
+    border-bottom: none;
+    border-radius: 10px 10px 0px 0px;
+    padding: 20px;
+}
+
+form {
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #B0C4DE;
+    background: white;
+    border-radius: 0px 0px 10px 10px;  
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    background: #5F9EA0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #4a7c7e;
+}
