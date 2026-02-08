@@ -2,41 +2,36 @@ export async function onRequestPost(context) {
     const { request, env } = context;
 
     try {
-        // 1. Recepción de datos desde el formulario (login o registro)
         const body = await request.json();
         const { username, password, action } = body;
-        
-        // El email es opcional (se usa en registro pero no en login)
         const email = body.email || ""; 
 
-        // 2. Validación de campos obligatorios
         if (!username || !password) {
             return new Response(JSON.stringify({ 
-                error: "Agatha: Identificación incompleta. Se requiere usuario y clave." 
+                error: "Agatha: Identificación incompleta." 
             }), { 
                 status: 400,
                 headers: { "Content-Type": "application/json" }
             });
         }
 
-        // --- MÓDULO DE REGISTRO ---
+        // --- REGISTRO ---
         if (action === 'register') {
             try {
-                // Insertamos el nuevo investigador en la tabla 'usuarios'
+                // Usamos la tabla 'usuarios' y la base de datos 'db' en minúsculas
                 await env.db.prepare(
                     "INSERT INTO usuarios (username, email, password) VALUES (?, ?, ?)"
                 ).bind(username, email, password).run();
 
                 return new Response(JSON.stringify({ 
-                    message: "Identidad creada con éxito. Agatha ha guardado tus datos." 
+                    message: "Identidad creada con éxito en el núcleo." 
                 }), {
                     headers: { "Content-Type": "application/json" },
                     status: 200
                 });
             } catch (dbError) {
-                // Manejo de error si el nombre de usuario ya existe (UNIQUE constraint)
                 return new Response(JSON.stringify({ 
-                    error: "Agatha: Este nombre de usuario ya está reservado o el núcleo está ocupado." 
+                    error: "Agatha: Error al registrar. ¿El usuario ya existe en 'usuarios'?" 
                 }), { 
                     status: 400,
                     headers: { "Content-Type": "application/json" }
@@ -44,15 +39,14 @@ export async function onRequestPost(context) {
             }
         }
 
-        // --- MÓDULO DE LOGIN ---
+        // --- LOGIN ---
         if (action === 'login') {
-            // Buscamos al usuario en la base de datos D1
+            // Buscamos específicamente en la tabla 'usuarios'
             const user = await env.db.prepare(
                 "SELECT * FROM usuarios WHERE username = ? AND password = ?"
             ).bind(username, password).first();
 
             if (user) {
-                // Éxito: Agatha reconoce la identidad
                 return new Response(JSON.stringify({ 
                     message: "Acceso concedido", 
                     user: user.username 
@@ -61,9 +55,8 @@ export async function onRequestPost(context) {
                     status: 200
                 });
             } else {
-                // Error: Credenciales incorrectas
                 return new Response(JSON.stringify({ 
-                    error: "Agatha: Identidad no confirmada. Acceso denegado." 
+                    error: "Agatha: Identidad no confirmada en la tabla usuarios." 
                 }), {
                     headers: { "Content-Type": "application/json" },
                     status: 401
@@ -71,16 +64,11 @@ export async function onRequestPost(context) {
             }
         }
 
-        // Si no se especifica una acción válida
-        return new Response(JSON.stringify({ error: "Comando no reconocido por el núcleo." }), { 
-            status: 400,
-            headers: { "Content-Type": "application/json" }
-        });
+        return new Response(JSON.stringify({ error: "Acción no reconocida." }), { status: 400 });
 
     } catch (err) {
-        // Captura de errores críticos (por ejemplo, si env.DB no está configurado)
         return new Response(JSON.stringify({ 
-            error: "Fallo crítico en el sistema Agatha: " + err.message 
+            error: "Fallo crítico: Verifica que la variable 'db' esté vinculada en Cloudflare. " + err.message 
         }), {
             headers: { "Content-Type": "application/json" },
             status: 500
