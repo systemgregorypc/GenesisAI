@@ -6,60 +6,81 @@
     <title>Panel de Control - GENESIS AI</title>
     <link rel="stylesheet" type="text/css" href="genesis-style.css">
     <style>
-        body { background: #0e0e0e; color: white; font-family: 'Segoe UI', sans-serif; text-align: center; padding-top: 50px; }
-        .container { background: #1a1a1a; padding: 40px; border: 2px solid #6133FF; max-width: 600px; margin: auto; border-radius: 20px; box-shadow: 0 0 30px rgba(97, 51, 255, 0.3); }
-        h1 { color: #6133FF; text-shadow: 0 0 10px #6133FF; }
-        .user-info { margin: 20px 0; padding: 15px; background: #000; border-radius: 10px; border-left: 5px solid #6133FF; }
-        .btn-logout { background: #ff3333; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; margin-top: 20px; }
+        body { background: #0e0e0e; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; }
+        
+        /* Barra Lateral */
+        .sidebar { width: 250px; background: #1a1a1a; height: 100vh; border-right: 1px solid #6133FF; padding: 20px; box-sizing: border-box; }
+        .sidebar h2 { color: #6133FF; font-size: 1.5em; margin-bottom: 30px; }
+        .menu-item { padding: 15px; cursor: pointer; border-radius: 5px; transition: 0.3s; margin-bottom: 10px; color: #888; }
+        .menu-item:hover, .menu-item.active { background: rgba(97, 51, 255, 0.1); color: white; border-left: 4px solid #6133FF; }
+
+        /* Contenido Principal */
+        .main-content { flex-grow: 1; padding: 40px; }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 20px; }
+        .user-info { color: #6133FF; font-weight: bold; }
+        
+        .card-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
+        .card { background: #1a1a1a; padding: 20px; border-radius: 10px; border: 1px solid #333; transition: 0.3s; }
+        .card:hover { border-color: #6133FF; transform: translateY(-5px); }
+        .card h3 { margin-top: 0; color: #6133FF; }
+        
+        .btn-logout { background: #ff3333; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>SISTEMA GÉNESIS AI</h1>
-        <p>Investigación en Biotecnología y Medicina</p>
-        
-        <div class="user-info">
-            <p>Estado del Núcleo: <span style="color: #00ff00;">ACTIVO</span></p>
-            <p>Investigador: <span id="display-user">Cargando...</span></p>
+
+    <div class="sidebar">
+        <h2>GÉNESIS AI</h2>
+        <div class="menu-item active">Dashboard</div>
+        <div class="menu-item">Biotecnología</div>
+        <div class="menu-item">Fusión Nuclear</div>
+        <div class="menu-item">Base de Datos</div>
+        <div class="menu-item" onclick="cerrarSesion()" style="margin-top: 50px; color: #ff3333;">Desconectar</div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Panel de Investigación</h1>
+            <div class="user-info">Investigador: <span id="nombreUsuario">...</span></div>
         </div>
 
-        <div id="content">
-            <p>Bienvenido al centro de mando, José Gregorio.</p>
+        <div class="card-container">
+            <div class="card">
+                <h3>Estado de Agatha</h3>
+                <p>Núcleo: <span style="color: #00ff00;">ACTIVO</span></p>
+                <p>Latencia: 24ms</p>
+            </div>
+            <div class="card">
+                <h3>Proyectos</h3>
+                <p>Investigaciones activas: 3</p>
+                <a href="#" style="color: #6133FF; text-decoration: none;">Ver detalles →</a>
+            </div>
+            <div class="card">
+                <h3>Seguridad</h3>
+                <p>Encriptación: AES-256</p>
+                <p>Acceso: Nivel 5</p>
+            </div>
         </div>
-
-        <button class="btn-logout" onclick="logout()">DESCONECTAR NÚCLEO</button>
     </div>
 
     <script>
-        // Al cargar, verificamos si hay una sesión activa
+        // SEGURIDAD: Verificar si el usuario está logueado
         window.onload = function() {
-            const user = sessionStorage.getItem('usuario');
-            if (!user) {
-                alert("Acceso denegado. Por favor, identifícate.");
+            const usuario = sessionStorage.getItem('usuario');
+            
+            if (!usuario) {
+                // Si no hay usuario en la sesión, lo mandamos al login
+                alert("Agatha: Acceso no autorizado. Por favor identifícate.");
                 window.location.href = "login.html";
             } else {
-                document.getElementById('display-user').innerText = user;
+                // Si existe, mostramos su nombre en el panel
+                document.getElementById('nombreUsuario').innerText = usuario;
             }
         };
 
-        function logout() {
+        function cerrarSesion() {
             sessionStorage.removeItem('usuario');
             window.location.href = "login.html";
-        }
-
-        // Si en el futuro necesitas que el panel le pida datos a Agatha (D1):
-        async function consultarAgatha() {
-            try {
-                const res = await fetch('/api/auth', { // Ruta simplificada a la raíz
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'check_status' })
-                });
-                const data = await res.json();
-                console.log("Respuesta de Agatha:", data);
-            } catch (err) {
-                console.error("Error de conexión con el núcleo");
-            }
         }
     </script>
 </body>
