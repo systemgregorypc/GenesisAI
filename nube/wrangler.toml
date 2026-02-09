@@ -1,7 +1,6 @@
 name = "genesis"
-main = "ser/server.php"
+pages_build_output_dir = "." # Esto le dice que tus archivos están en la raíz
 compatibility_date = "2024-06-08"
-
 
 [[d1_databases]]
 binding = "DB"
@@ -9,6 +8,4 @@ database_name = "registro"
 database_id = "a0411c02-07eb-4c79-a0a8-b10e7c4ec6e4"
 
 [vars]
-SALT_TOKEN = ""
-
-
+SALT_TOKEN = "tu_token_aqui"
