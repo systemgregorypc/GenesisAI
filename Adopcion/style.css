@@ -1,98 +1,13 @@
-/* Style Original de System Gregory PC */
-
-* {
-    margin: 0;
+nav ul {
+    display: flex;             /* Activa el modo flexible */
+    justify-content: center;   /* Centra los elementos horizontalmente */
+    align-items: center;       /* Centra los elementos verticalmente */
+    list-style: none;          /* Quita los puntos de la lista */
     padding: 0;
-    box-sizing: border-box;
+    margin: 0;
+    background-color: #5F9EA0; /* Tu Azul Cadete */
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #F8F8FF; /* Fondo claro original */
-    color: #333;
+nav ul li {
+    margin: 0 15px;            /* Espacio entre cada opción del menú */
 }
-
-/* Barra de Menú Horizontal */
-.navbar {
-    background-color: #5F9EA0; /* Azul Cadete Original */
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.navbar-brand {
-    color: white;
-    font-weight: bold;
-    font-size: 1.5rem;
-    text-decoration: none;
-}
-
-.nav-links {
-    display: flex; /* Esto evita que el menú se ponga vertical */
-    list-style: none;
-    gap: 20px;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    color: #D1E8E9;
-}
-
-/* Contenedor del Núcleo (Login) */
-.login-container {
-    max-width: 400px;
-    margin: 50px auto;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    border-top: 5px solid #5F9EA0;
-}
-
-h2 {
-    text-align: center;
-    color: #5F9EA0;
-    margin-bottom: 20px;
-}
-
-.input-group {
-    margin-bottom: 15px;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.btn {
-    width: 100%;
-    padding: 12px;
-    background-color: #5F9EA0;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-.btn:hover {
-    background-color: #4a7c7e;
-}
-  
