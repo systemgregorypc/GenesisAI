@@ -4,8 +4,8 @@ compatibility_date = "2024-06-08"
 
 [[d1_databases]]
 binding = "db"
-database_name = "registro"
-database_id = "a0411c02-07eb-4c79-a0a8-b10e7c4ec6e4"
+database_name = "db"
+database_id = "8dbb39ad-2784-445d-a092-5785e7888fb8"
 
 [vars]
 SALT_TOKEN = "loiuidjk587468d5448d458d5g8v"
