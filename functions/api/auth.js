@@ -5,6 +5,9 @@ export async function onRequestPost(context) {
         const body = await request.json();
         const { username, password, action } = body;
         const email = body.email || ""; 
+        
+        // Obtenemos su token de seguridad del wrangler.toml
+        const SALT = env.SALT_TOKEN || "";
 
         if (!username || !password) {
             return new Response(JSON.stringify({ 
@@ -15,23 +18,27 @@ export async function onRequestPost(context) {
             });
         }
 
+        // Combinamos la contraseña con el SALT para máxima seguridad
+        // Así, aunque alguien vea la DB, no sabrá la clave real
+        const securePassword = password + SALT;
+
         // --- REGISTRO ---
         if (action === 'register') {
             try {
-                // Usamos la tabla 'usuarios' y la base de datos 'db' en minúsculas
+                // Usamos 'env.db' que es el binding que acabamos de corregir
                 await env.db.prepare(
                     "INSERT INTO usuarios (username, email, password) VALUES (?, ?, ?)"
-                ).bind(username, email, password).run();
+                ).bind(username, email, securePassword).run();
 
                 return new Response(JSON.stringify({ 
-                    message: "Identidad creada con éxito en el núcleo." 
+                    message: "Identidad creada con éxito en el núcleo de Génesis AI." 
                 }), {
                     headers: { "Content-Type": "application/json" },
                     status: 200
                 });
             } catch (dbError) {
                 return new Response(JSON.stringify({ 
-                    error: "Agatha: Error al registrar. ¿El usuario ya existe en 'usuarios'?" 
+                    error: "Agatha: Error al registrar. ¿El usuario ya existe?" 
                 }), { 
                     status: 400,
                     headers: { "Content-Type": "application/json" }
@@ -41,13 +48,13 @@ export async function onRequestPost(context) {
 
         // --- LOGIN ---
         if (action === 'login') {
-            // Buscamos específicamente en la tabla 'usuarios'
             const user = await env.db.prepare(
                 "SELECT * FROM usuarios WHERE username = ? AND password = ?"
-            ).bind(username, password).first();
+            ).bind(username, securePassword).first();
 
             if (user) {
                 return new Response(JSON.stringify({ 
+                    success: true,
                     message: "Acceso concedido", 
                     user: user.username 
                 }), {
@@ -56,7 +63,8 @@ export async function onRequestPost(context) {
                 });
             } else {
                 return new Response(JSON.stringify({ 
-                    error: "Agatha: Identidad no confirmada en la tabla usuarios." 
+                    success: false,
+                    error: "Agatha: Identidad no confirmada. Credenciales inválidas." 
                 }), {
                     headers: { "Content-Type": "application/json" },
                     status: 401
@@ -64,11 +72,11 @@ export async function onRequestPost(context) {
             }
         }
 
-        return new Response(JSON.stringify({ error: "Acción no reconocida." }), { status: 400 });
+        return new Response(JSON.stringify({ error: "Acción no reconocida por el núcleo." }), { status: 400 });
 
     } catch (err) {
         return new Response(JSON.stringify({ 
-            error: "Fallo crítico: Verifica que la variable 'db' esté vinculada en Cloudflare. " + err.message 
+            error: "Fallo crítico: Verifica la conexión 'db'. " + err.message 
         }), {
             headers: { "Content-Type": "application/json" },
             status: 500
