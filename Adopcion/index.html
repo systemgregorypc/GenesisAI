@@ -2,32 +2,118 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title> GENESIS AI / PROGRAMMERS CENTER </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genesis-AI | System Gregory PC</title>
     
-    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/systemgregorypc/GenesisAI/refs/heads/main/Adopcion/assets/ico/favicon.ico">
-    <link rel="stylesheet" href="style.css">
-	 <!-- fondo /color /comunicacion / servicios -->   
- <style>
-        body { padding-top: 60px; background-image: url("https://raw.githubusercontent.com/systemgregorypc/GenesisAI/refs/heads/main/Adopcion/jpg/a.jpg"); background-attachment: fixed; background-size: cover; color: white; }
-        #menu { background: rgba(0,0,0,0.7); padding: 10px; border-radius: 10px; }
-        .footer-text { color: #ffefe; text-align: center; margin-top: 10px; }
+    <style>
+        /* --- AQUÍ VA TU CSS --- */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000; /* Fondo negro para resaltar tu investigación */
+            color: white;
+        }
+
+        .navbar {
+            background: #111;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            border-bottom: 2px solid #00ff00; /* Un toque verde de tecnología/matriz */
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #00ff00;
+        }
+
+        .menu-icon {
+            display: none; /* Oculto en computadoras */
+            font-size: 28px;
+            cursor: pointer;
+            color: #00ff00;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: #00ff00;
+        }
+
+        /* --- RESPONSIVE (CELULARES) --- */
+        @media (max-width: 768px) {
+            .menu-icon {
+                display: block; /* Aparece en móviles */
+            }
+
+            .nav-links {
+                display: none; /* Se oculta el menú amontonado */
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: #111;
+                text-align: center;
+                border-bottom: 2px solid #00ff00;
+            }
+
+            .nav-links.active {
+                display: flex; /* Se muestra al hacer click */
+            }
+
+            .nav-links li {
+                padding: 15px 0;
+            }
+        }
     </style>
+</head>
+<body>
 
-    
-    <div class="navbar-inner">
-  <div class="container">
-    <a class="brand" href="/">GENESIS AI</a>
-    <ul class="nav" style="display: flex !important; flex-direction: row !important; list-style: none;">
-      <li style="display: inline-block;"><a href="/">Principal</a></li>
-      <li style="display: inline-block;"><a href="https://a1xcoin.blogspot.com/">Banco</a></li>
-      <li style="display: inline-block;"><a href="/cursos.html">Cursos</a></li>
-      <li style="display: inline-block;"><a href="/ai.html">ai</a></li>
-      <li style="display: inline-block;"><a href="/login.html">Iniciar Sesión</a></li>
-    </ul>
-  </div>
-</div>
+    <nav class="navbar">
+        <div class="logo">GENESIS AI</div>
+        
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#">INICIO</a></li>
+            <li><a href="#">TUTORIALES</a></li>
+            <li><a href="#">SOPORTE</a></li>
+            <li><a href="#">MEDICO AI</a></li>
+            <li><a href="#">EMPLEO</a></li>
+            <li><a href="#">CONTACTO</a></li>
+        </ul>
+    </nav>
 
+    <div style="padding: 20px;">
+        <h1>Investigación y Desarrollo</h1>
+        <p>Bienvenido a la plataforma de Genesis-AI.</p>
+    </div>
+
+    <script>
+        /* --- AQUÍ VA TU JAVASCRIPT --- */
+        function toggleMenu() {
+            const navLinks = document.getElementById("navLinks");
+            navLinks.classList.toggle("active");
+        }
+    </script>
+
+</body>
+</html>
 
     <div class="container">
         <h1 align="center" style="color: #00FBFF; text-shadow: 2px 2px #6133FF;">GENESIS AI</h1>
