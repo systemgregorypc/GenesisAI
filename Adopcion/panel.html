@@ -14,7 +14,7 @@
         .menu-item:hover, .menu-item.active { background: rgba(97, 51, 255, 0.1); color: white; border-left: 4px solid #6133FF; }
 
         /* Contenido Principal */
-        .main-content { flex-grow: 1; padding: 40px; }
+        .main-content { flex-grow: 1; padding: 40px; overflow-y: auto; height: 100vh; box-sizing: border-box; }
         .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 20px; }
         .user-info { color: #6133FF; font-weight: bold; background: rgba(97, 51, 255, 0.1); padding: 5px 15px; border-radius: 20px; }
         
@@ -24,6 +24,7 @@
         .card h3 { margin-top: 0; color: #6133FF; font-size: 1.1em; }
         
         .status-dot { height: 10px; width: 10px; background-color: #00ff00; border-radius: 50%; display: inline-block; margin-right: 5px; }
+        .status-dot-warning { height: 10px; width: 10px; background-color: #ffaa00; border-radius: 50%; display: inline-block; margin-right: 5px; }
     </style>
 </head>
 <body>
@@ -33,8 +34,9 @@
         <div class="menu-item active">📊 Dashboard</div>
         <div class="menu-item">🧬 Biotecnología</div>
         <div class="menu-item">⚛️ Fusión Nuclear</div>
+        <div class="menu-item">🤖 Lista de IAs</div>
         <div class="menu-item">💾 Base de Datos (db)</div>
-        <div class="menu-item" onclick="cerrarSesion()" style="margin-top: 50px; color: #ff3333;">⚠️ Desconectar</div>
+        <div class="menu-item" onclick="cerrarSesion()" style="margin-top: 40px; color: #ff3333;">⚠️ Desconectar</div>
     </div>
 
     <div class="main-content">
@@ -48,40 +50,45 @@
                 <h3>Agatha Intelligence</h3>
                 <p><span class="status-dot"></span> Núcleo: <span style="color: #00ff00;">ONLINE</span></p>
                 <p>Latencia de Red: 24ms</p>
-                <p style="font-size: 0.8em; color: #555;">Base de datos vinculada: 8dbb39ad</p>
+                <p style="font-size: 0.8em; color: #555;">Base de datos vinculada: D1</p>
             </div>
 
             <div class="card">
-                <h3>Proyectos Médicos</h3>
-                <p>Hospital Central San Cristóbal</p>
-                <p>Equipos X-Ray: <span style="color: #6133FF;">Pendiente</span></p>
-                <a href="#" style="color: #6133FF; text-decoration: none; font-weight: bold;">Ver Inventario →</a>
+                <h3>Modelos Externos (IAs)</h3>
+                <p><span class="status-dot-warning"></span> ChatGPT / Claude: <span style="color: #ffaa00;">Restringido / VPN</span></p>
+                <p>Estado regional: Alerta por bloqueo IP</p>
+                <a href="#ia-list" style="color: #6133FF; text-decoration: none; font-weight: bold;">Ver Protocolos →</a>
             </div>
 
             <div class="card">
                 <h3>Seguridad de Datos</h3>
-                <p>Token: AES-256</p>
+                <p>Token: AES-256 + SALT</p>
                 <p>Binding D1: <span style="color: #00ff00;">Conectado</span></p>
             </div>
         </div>
 
-        <div style="margin-top: 40px; background: #1a1a1a; padding: 20px; border-radius: 10px; border: 1px solid #333;">
+        <div id="ia-list" style="margin-top: 40px; background: #1a1a1a; padding: 20px; border-radius: 10px; border: 1px solid #333;">
+            <h3 style="color: #6133FF;">Directorio de Inteligencias Artificiales y Conectividad</h3>
+            <ul style="color: #bbb; line-height: 1.8; margin-top: 10px;">
+                <li><strong>Agatha (Núcleo Local):</strong> Operando al 100% bajo infraestructura propia en Cloudflare Pages y D1.</li>
+                <li><strong>Claude AI (Anthropic):</strong> Requiere pasarela o reenvío de red debido a filtros geográficos en territorio venezolano.</li>
+                <li><strong>ChatGPT (OpenAI):</strong> Sujeto a restricciones por restricciones comerciales de IP; monitoreo de red activo.</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 30px; background: #1a1a1a; padding: 20px; border-radius: 10px; border: 1px solid #333;">
             <h3 style="color: #6133FF;">Bitácora de Investigación</h3>
             <p id="biografia" style="color: #bbb; line-height: 1.6;">
                 José Gregorio Hernández Calderón: Técnico en electrónica e investigador de biotecnología. 
-                Preparando ingreso a medicina. Proyecto activo: Gestión de donaciones hospitalarias.
+                Preparando ingreso a medicina. Proyecto activo: Gestión de donaciones hospitalarias y optimización del núcleo Génesis AI.
             </p>
         </div>
     </div>
 
     <script>
-        // SEGURIDAD: Verificar sesión activa
         window.onload = function() {
-            // Buscamos el usuario que guardamos al hacer login
             const usuario = sessionStorage.getItem('usuario');
-            
             if (!usuario) {
-                console.log("Acceso denegado por Agatha.");
                 window.location.href = "login.html";
             } else {
                 document.getElementById('nombreUsuario').innerText = usuario;
