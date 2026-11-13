@@ -52,6 +52,7 @@
         }
         .btn-access:hover { background: #4b28cc; }
         .footer-logo { margin-top: 30px; font-size: 0.7em; color: #444; }
+        a { color: #6133FF; text-decoration: none; font-size: 0.85em; display: block; margin-top: 15px; }
     </style>
 </head>
 <body>
@@ -62,7 +63,7 @@
         
         <form id="loginForm">
             <div class="input-group">
-                <label>USUARIO / EMAIL</label>
+                <label>USUARIO</label>
                 <input type="text" id="usuario" placeholder="Ingrese su usuario" required>
             </div>
             <div class="input-group">
@@ -71,6 +72,8 @@
             </div>
             <button type="submit" class="btn-access">INICIAR NÚCLEO</button>
         </form>
+
+        <a href="registro.html">¿No tienes cuenta? Crear Identidad</a>
 
         <div id="mensaje" style="margin-top: 15px; font-size: 0.8em; color: #ff3333;"></div>
         
@@ -87,36 +90,34 @@
             const pass = document.getElementById('password').value;
             const mensaje = document.getElementById('mensaje');
 
-            mensaje.innerText = "Agatha: Verificando credenciales...";
+            mensaje.innerText = "Agatha: Verificando credenciales en el núcleo...";
             mensaje.style.color = "#6133FF";
 
             try {
-                // Aquí llamamos a la base de datos 'db' que configuramos
-                // El endpoint '/api/login' es el que usaría su Worker
-                const response = await fetch('/api/login', {
+                // Apuntamos al endpoint unificado /api/auth con action: 'login'
+                const response = await fetch('/api/auth', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ user, pass })
+                    body: JSON.stringify({ 
+                        username: user, 
+                        password: pass, 
+                        action: 'login' 
+                    })
                 });
 
                 const data = await response.json();
 
-                if (data.success) {
-                    // Si todo sale bien, guardamos la sesión
-                    sessionStorage.setItem('usuario', user);
+                if (response.ok && data.success) {
+                    sessionStorage.setItem('usuario', data.user);
                     window.location.href = "panel.html";
                 } else {
-                    mensaje.innerText = "Acceso denegado. Verifique sus datos.";
+                    mensaje.innerText = data.error || "Acceso denegado. Verifique sus datos.";
                     mensaje.style.color = "#ff3333";
                 }
             } catch (error) {
-                // Si la API aún no está lista, hacemos una prueba local para que usted pueda entrar
-                if (user === "josegregorio" || user === "systemgregoryp.c@gmail.com") {
-                    sessionStorage.setItem('usuario', user);
-                    window.location.href = "panel.html";
-                } else {
-                    mensaje.innerText = "Error de conexión con la base de datos db.";
-                }
+                mensaje.innerText = "Fallo crítico: No se pudo conectar con el núcleo en /api/auth.";
+                mensaje.style.color = "#ff3333";
+                console.error("Error de conexión:", error);
             }
         };
     </script>
