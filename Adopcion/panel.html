@@ -24,7 +24,6 @@
         .card h3 { margin-top: 0; color: #6133FF; font-size: 1.1em; }
         
         .status-dot { height: 10px; width: 10px; background-color: #00ff00; border-radius: 50%; display: inline-block; margin-right: 5px; }
-        .status-dot-warning { height: 10px; width: 10px; background-color: #ffaa00; border-radius: 50%; display: inline-block; margin-right: 5px; }
     </style>
 </head>
 <body>
@@ -34,53 +33,51 @@
         <div class="menu-item active">📊 Dashboard</div>
         <div class="menu-item">🧬 Biotecnología</div>
         <div class="menu-item">⚛️ Fusión Nuclear</div>
-        <div class="menu-item">🤖 Lista de IAs</div>
-        <div class="menu-item">💾 Base de Datos (db)</div>
+        <div class="menu-item">🤖 Modelos Propios</div>
+        <div class="menu-item">💾 Base de Datos (D1)</div>
         <div class="menu-item" onclick="cerrarSesion()" style="margin-top: 40px; color: #ff3333;">⚠️ Desconectar</div>
     </div>
 
     <div class="main-content">
         <div class="header">
-            <h1>Investigación Médica y Física</h1>
+            <h1>Plataforma Autónoma de Inteligencia Artificial</h1>
             <div class="user-info">ID: <span id="nombreUsuario">Cargando...</span></div>
         </div>
 
         <div class="card-container">
             <div class="card">
-                <h3>Agatha Intelligence</h3>
-                <p><span class="status-dot"></span> Núcleo: <span style="color: #00ff00;">ONLINE</span></p>
-                <p>Latencia de Red: 24ms</p>
-                <p style="font-size: 0.8em; color: #555;">Base de datos vinculada: D1</p>
+                <h3>Núcleo Génesis</h3>
+                <p><span class="status-dot"></span> Estado: <span style="color: #00ff00;">ONLINE (100% Operativo)</span></p>
+                <p>Infraestructura: Cloudflare Edge</p>
+                <p style="font-size: 0.8em; color: #555;">Disponibilidad regional ininterrumpida</p>
             </div>
 
             <div class="card">
-                <h3>Modelos Externos (IAs)</h3>
-                <p><span class="status-dot-warning"></span> ChatGPT / Claude: <span style="color: #ffaa00;">Restringido / VPN</span></p>
-                <p>Estado regional: Alerta por bloqueo IP</p>
-                <a href="#ia-list" style="color: #6133FF; text-decoration: none; font-weight: bold;">Ver Protocolos →</a>
+                <h3>Modelo de Suscripción</h3>
+                <p>Tarifa activa: <span style="color: #6133FF; font-weight: bold;">$2.00 USD / mes</span></p>
+                <p>Acceso total al ecosistema</p>
+                <a href="#planes" style="color: #6133FF; text-decoration: none; font-weight: bold;">Gestionar Planes →</a>
             </div>
 
             <div class="card">
                 <h3>Seguridad de Datos</h3>
                 <p>Token: AES-256 + SALT</p>
-                <p>Binding D1: <span style="color: #00ff00;">Conectado</span></p>
+                <p>Base de datos: <span style="color: #00ff00;">Protegida (D1)</span></p>
             </div>
         </div>
 
-        <div id="ia-list" style="margin-top: 40px; background: #1a1a1a; padding: 20px; border-radius: 10px; border: 1px solid #333;">
-            <h3 style="color: #6133FF;">Directorio de Inteligencias Artificiales y Conectividad</h3>
-            <ul style="color: #bbb; line-height: 1.8; margin-top: 10px;">
-                <li><strong>Agatha (Núcleo Local):</strong> Operando al 100% bajo infraestructura propia en Cloudflare Pages y D1.</li>
-                <li><strong>Claude AI (Anthropic):</strong> Requiere pasarela o reenvío de red debido a filtros geográficos en territorio venezolano.</li>
-                <li><strong>ChatGPT (OpenAI):</strong> Sujeto a restricciones por restricciones comerciales de IP; monitoreo de red activo.</li>
-            </ul>
+        <div id="planes" style="margin-top: 40px; background: #1a1a1a; padding: 20px; border-radius: 10px; border: 1px solid #333;">
+            <h3 style="color: #6133FF;">Ecosistema y Monetización de Inteligencia Artificial</h3>
+            <p style="color: #bbb; line-height: 1.6; margin-top: 10px;">
+                Génesis AI se posiciona como la solución definitiva y sin restricciones en el territorio nacional. Ofrecemos procesamiento neuronal de alto rendimiento, asistencia técnica especializada y herramientas de investigación biotecnológica y física por una cuota accesible de <strong>$2 USD mensuales</strong>. Sin bloqueos geográficos, sin intermediarios y con total soberanía sobre los datos.
+            </p>
         </div>
 
         <div style="margin-top: 30px; background: #1a1a1a; padding: 20px; border-radius: 10px; border: 1px solid #333;">
             <h3 style="color: #6133FF;">Bitácora de Investigación</h3>
             <p id="biografia" style="color: #bbb; line-height: 1.6;">
                 José Gregorio Hernández Calderón: Técnico en electrónica e investigador de biotecnología. 
-                Preparando ingreso a medicina. Proyecto activo: Gestión de donaciones hospitalarias y optimización del núcleo Génesis AI.
+                Preparando ingreso a medicina. Proyecto activo: Gestión de donaciones hospitalarias y expansión comercial de Génesis AI.
             </p>
         </div>
     </div>
