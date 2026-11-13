@@ -6,31 +6,38 @@ export async function onRequestPost(context) {
         const { username, password, action } = body;
         const email = body.email || ""; 
         
-        // Obtenemos su token de seguridad del wrangler.toml
+        // Obtenemos el SALT de seguridad de las variables de entorno
         const SALT = env.SALT_TOKEN || "";
 
         if (!username || !password) {
             return new Response(JSON.stringify({ 
-                error: "Agatha: Identificación incompleta." 
+                error: "Agatha: Identificación incompleta. Faltan datos." 
             }), { 
                 status: 400,
                 headers: { "Content-Type": "application/json" }
             });
         }
 
-        // Combinamos la contraseña con el SALT para máxima seguridad
-        // Así, aunque alguien vea la DB, no sabrá la clave real
+        // Combinamos la contraseña con el SALT
         const securePassword = password + SALT;
+
+        // IMPORTANTE: Asegúrate de que tu binding en Cloudflare Pages se llame 'DB' 
+        // (o cámbialo aquí a env.db si la configuraste en minúscula).
+        const database = env.DB || env.db;
+
+        if (!database) {
+            throw new Error("La base de datos D1 no está enlazada correctamente en el entorno.");
+        }
 
         // --- REGISTRO ---
         if (action === 'register') {
             try {
-                // Usamos 'env.db' que es el binding que acabamos de corregir
-                await env.db.prepare(
+                await database.prepare(
                     "INSERT INTO usuarios (username, email, password) VALUES (?, ?, ?)"
                 ).bind(username, email, securePassword).run();
 
                 return new Response(JSON.stringify({ 
+                    success: true,
                     message: "Identidad creada con éxito en el núcleo de Génesis AI." 
                 }), {
                     headers: { "Content-Type": "application/json" },
@@ -38,7 +45,8 @@ export async function onRequestPost(context) {
                 });
             } catch (dbError) {
                 return new Response(JSON.stringify({ 
-                    error: "Agatha: Error al registrar. ¿El usuario ya existe?" 
+                    success: false,
+                    error: "Agatha: Error al registrar. ¿El usuario o correo ya existen?" 
                 }), { 
                     status: 400,
                     headers: { "Content-Type": "application/json" }
@@ -48,8 +56,8 @@ export async function onRequestPost(context) {
 
         // --- LOGIN ---
         if (action === 'login') {
-            const user = await env.db.prepare(
-                "SELECT * FROM usuarios WHERE username = ? AND password = ?"
+            const user = await database.prepare(
+                "SELECT username FROM usuarios WHERE username = ? AND password = ?"
             ).bind(username, securePassword).first();
 
             if (user) {
@@ -72,11 +80,15 @@ export async function onRequestPost(context) {
             }
         }
 
-        return new Response(JSON.stringify({ error: "Acción no reconocida por el núcleo." }), { status: 400 });
+        return new Response(JSON.stringify({ error: "Acción no reconocida por el núcleo." }), { 
+            status: 400,
+            headers: { "Content-Type": "application/json" }
+        });
 
     } catch (err) {
         return new Response(JSON.stringify({ 
-            error: "Fallo crítico: Verifica la conexión 'db'. " + err.message 
+            success: false,
+            error: "Fallo crítico en el servidor: " + err.message 
         }), {
             headers: { "Content-Type": "application/json" },
             status: 500
