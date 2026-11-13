@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - GENESIS AI</title>
-    <link rel="stylesheet" type="text/css" href="genesis-style.css">
     <style>
         body { background: #0e0e0e; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding-top: 50px; }
         .box { background: #1a1a1a; padding: 30px; border: 1px solid #6133FF; max-width: 350px; margin: auto; border-radius: 15px; box-shadow: 0 0 20px rgba(97, 51, 255, 0.2); }
         h2 { color: #6133FF; margin-bottom: 20px; }
-        input { width: 90%; padding: 12px; margin: 10px 0; background: #000; border: 1px solid #333; color: white; border-radius: 5px; }
+        input { width: 90%; padding: 12px; margin: 10px 0; background: #000; border: 1px solid #333; color: white; border-radius: 5px; box-sizing: border-box; }
         input:focus { border-color: #6133FF; outline: none; }
         .btn { background: #6133FF; color: white; border: none; padding: 14px; width: 100%; cursor: pointer; font-weight: bold; border-radius: 5px; transition: 0.3s; margin-top: 10px; }
         .btn:hover { background: #4a27cc; box-shadow: 0 0 15px #6133FF; }
@@ -20,15 +19,17 @@
 <body>
     <div class="box">
         <h2>Crear Identidad</h2>
-        <p style="font-size: 0.8em; color: #888;">Vinculando panel GENESIS IA (IA)</p>
+        <p style="font-size: 0.8em; color: #888;">Vinculando panel GENESIS AI</p>
         
         <input type="text" id="user" placeholder="Nombre de Usuario" required>
         <input type="email" id="email" placeholder="Correo Electrónico" required>
         <input type="password" id="pass1" placeholder="Nueva Contraseña" required>
         <input type="password" id="pass2" placeholder="Confirmar Contraseña" required>
         
-        <button class="btn" onclick="registrar()">VINCULAR CON AREA DE LABORATORIO</button>
+        <button class="btn" onclick="registrar()">VINCULAR CON NÚCLEO</button>
         
+        <div id="mensajeReg" style="margin-top: 15px; font-size: 0.8em;"></div>
+
         <div class="footer-link">
             <a href="login.html">¿Ya tienes cuenta? Entrar al Núcleo</a>
         </div>
@@ -36,21 +37,26 @@
 
     <script>
     async function registrar() {
-        const u = document.getElementById('user').value;
-        const e = document.getElementById('email').value;
+        const u = document.getElementById('user').value.trim();
+        const e = document.getElementById('email').value.trim();
         const p1 = document.getElementById('pass1').value;
         const p2 = document.getElementById('pass2').value;
+        const msg = document.getElementById('mensajeReg');
 
         if(!u || !e || !p1 || !p2) {
-            return alert("Agatha: Debes completar todos los campos.");
+            msg.style.color = "#ff3333";
+            return msg.innerText = "Agatha: Debes completar todos los campos.";
         }
         if(p1 !== p2) {
-            return alert("Agatha: Las contraseñas no coinciden.");
+            msg.style.color = "#ff3333";
+            return msg.innerText = "Agatha: Las contraseñas no coinciden.";
         }
 
+        msg.style.color = "#6133FF";
+        msg.innerText = "Agatha: Registrando identidad en la base de datos...";
+
         try {
-            // RUTA CORREGIDA: ../ sale de 'ser' y busca 'api' en la raíz de 'Adopción'
-           const res = await fetch('/api/auth', {
+            const res = await fetch('/api/auth', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
@@ -63,15 +69,19 @@
 
             const data = await res.json();
 
-            if(res.ok) {
-                alert("Agatha: Sincronización exitosa. Tu identidad ha sido grabada.");
-                window.location.href = "login.html";
+            if (res.ok && data.success) {
+                msg.style.color = "#00ff00";
+                msg.innerText = "Sincronización exitosa. Redirigiendo...";
+                setTimeout(() => {
+                    window.location.href = "login.html";
+                }, 1500);
             } else {
-                alert("Agatha detectó un error: " + (data.error || "Fallo en la escritura."));
+                msg.style.color = "#ff3333";
+                msg.innerText = data.error || "Agatha detectó un error en el registro.";
             }
         } catch (err) {
-            // Este error ocurre si la carpeta 'functions' no está activa en Cloudflare
-            alert("Fallo crítico: No se pudo conectar con el núcleo en ../api/auth.");
+            msg.style.color = "#ff3333";
+            msg.innerText = "Fallo crítico: No se pudo conectar con el núcleo en /api/auth.";
             console.error("Error de conexión:", err);
         }
     }
