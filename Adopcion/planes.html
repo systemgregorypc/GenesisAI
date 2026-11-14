@@ -235,16 +235,41 @@
             <a href="https://wa.me/584143767524?text=Hola,%20realice%20el%20pago%20por%20Zinli%20para%20Genesis%20AI" class="btn-pay" target="_blank">Reportar Pago Zinli</a>
         </div>
 
-       <!-- PAYPAL -->
+   <!-- PAYPAL -->
         <div class="payment-box">
             <h3>🅿️ PayPal</h3>
-            <p>Pasarela de pagos internacional segura.</p>
+            <p>Suscripción automática mensual ($2.00 USD).</p>
             <ul>
-                <li><strong>Correo PayPal:</strong> systemgregoryp.c@gmail.com</li>
-                <li><strong>ID de Comercio:</strong> CSKCH5AFEPLRY</li>
+                <li><strong>Correo:</strong> systemgregoryp.c@gmail.com</li>
+                <li><strong>ID Comercio:</strong> CSKCH5AFEPLRY</li>
             </ul>
-            <a href="https://paypal.me/systemgregoryp" class="btn-pay" style="background: #0070ba; margin-bottom: 8px;" target="_blank">Pagar con PayPal ($2)</a>
-            <a href="https://wa.me/584143767524?text=Hola,%20realice%20el%20pago%20por%20PayPal%20para%20la%20suscripcion%20de%20Genesis%20AI" class="btn-pay" target="_blank">Reportar Pago PayPal al WhatsApp</a>
+
+            <!-- Contenedor y Script del Botón Oficial de PayPal -->
+            <div id="paypal-button-container-P-02R547096J964252SNL4HIBI" style="margin-top: 15px;"></div>
+            <script src="https://www.paypal.com/sdk/js?client-id=ATnCNxdyFdk-U5TwNA8P9gSWBjDhFFsXl8Z2n2JhAMhZqYtQ9p6P0NniSdzD9ncNlUm9KMCTF8MhOkqu&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+            <script>
+              paypal.Buttons({
+                  style: {
+                      shape: 'pill',
+                      color: 'gold',
+                      layout: 'vertical',
+                      label: 'subscribe'
+                  },
+                  createSubscription: function(data, actions) {
+                      return actions.subscription.create({
+                          /* Plan ID oficial de Génesis AI */
+                          plan_id: 'P-02R547096J964252SNL4HIBI'
+                      });
+                  },
+                  onApprove: function(data, actions) {
+                      // Al aprobarse, redirige al usuario o le notifica y abre WhatsApp con el ID de suscripción para activarle el acceso
+                      alert('¡Suscripción exitosa! ID: ' + data.subscriptionID);
+                      window.location.href = 'https://wa.me/584143767524?text=Hola,%20acabo%20de%20pagar%20mi%20suscripcion%20de%20Genesis%20AI.%20Mi%20ID%20de%20suscripcion%20es:%20' + data.subscriptionID;
+                  }
+              }).render('#paypal-button-container-P-02R547096J964252SNL4HIBI');
+            </script>
+
+            <a href="https://wa.me/584143767524?text=Hola,%20tengo%20una%20consulta%20sobre%20el%20pago%20por%20PayPal%20para%20la%20suscripcion%20de%20Genesis%20AI" class="btn-pay" style="background: #333; border: 1px solid #0070ba; margin-top: 15px;" target="_blank">¿Problemas con PayPal? Escríbenos</a>
         </div>
 
     </div>
