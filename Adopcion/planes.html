@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planes y Suscripción - GÉNESIS AI</title>
+    <style>
+        body { 
+            background: #0e0e0e; 
+            color: white; 
+            font-family: 'Segoe UI', sans-serif; 
+            margin: 0; 
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-container {
+            text-align: center;
+            margin-bottom: 40px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        h1 { color: #6133FF; letter-spacing: 2px; margin-bottom: 10px; }
+        p.subtitle { color: #888; font-size: 0.95em; }
+
+        /* Tarjeta principal del Plan */
+        .plan-card-main {
+            background: linear-gradient(135deg, #1a1a1a 0%, #120f24 100%);
+            border: 2px solid #6133FF;
+            border-radius: 15px;
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 0 25px rgba(97, 51, 255, 0.25);
+            margin-bottom: 40px;
+        }
+
+        .price {
+            font-size: 2.5em;
+            color: #00ff00;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        /* Secciones de métodos de pago */
+        .section-title {
+            color: #6133FF;
+            width: 100%;
+            max-width: 900px;
+            margin: 25px 0 15px 0;
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+            font-size: 1.1em;
+            text-align: left;
+        }
+
+        .payment-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+            gap: 20px; 
+            width: 100%;
+            max-width: 900px;
+            margin-bottom: 20px;
+        }
+
+        .payment-box { 
+            background: #1a1a1a; 
+            border-radius: 10px; 
+            border: 1px solid #333; 
+            padding: 20px;
+            text-align: left;
+            transition: 0.3s;
+        }
+
+        .payment-box:hover {
+            border-color: #6133FF;
+            box-shadow: 0 0 15px rgba(97, 51, 255, 0.2);
+        }
+
+        .payment-box h3 {
+            color: #6133FF;
+            margin-top: 0;
+            font-size: 1.1em;
+        }
+
+        .payment-box p, .payment-box ul {
+            color: #bbb;
+            font-size: 0.85em;
+            line-height: 1.6;
+        }
+
+        .payment-box ul {
+            padding-left: 15px;
+            margin: 10px 0;
+        }
+
+        .crypto-address {
+            background: #000;
+            padding: 8px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 0.75em;
+            color: #00ff00;
+            word-break: break-all;
+            margin-top: 8px;
+            border: 1px dashed #444;
+        }
+
+        /* Botón de acción / reporte de pago */
+        .btn-pay {
+            display: block;
+            background: #6133FF;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        .btn-pay:hover {
+            background: #4b28cc;
+            box-shadow: 0 0 10px #6133FF;
+        }
+
+        .back-link {
+            margin-top: 40px;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .back-link:hover { color: #6133FF; }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <h1>SUSCRIPCIÓN NÚCLEO</h1>
+        <p class="subtitle">Acceso ilimitado a la red de Inteligencia Artificial Génesis</p>
+    </div>
+
+    <!-- TARJETA PRINCIPAL DEL PLAN -->
+    <div class="plan-card-main">
+        <h2 style="color: white; margin: 0;">Plan Investigador Pro</h2>
+        <div class="price">$2.00 <span style="font-size: 0.4em; color: #aaa;">USD / mes</span></div>
+        <p style="color: #ccc; font-size: 0.9em;">Acceso sin restricciones geográficas, modelos propios y procesamiento prioritario en el núcleo de Cloudflare D1.</p>
+    </div>
+
+    <!-- MÉTODOS DE PAGO: CRIPTOMONEDAS -->
+    <div class="section-title">🪙 Pagos Descentralizados y Criptomonedas</div>
+    
+    <div class="payment-grid">
+        
+        <!-- USDT -->
+        <div class="payment-box">
+            <h3>💲 USDT (Tether)</h3>
+            <p>Pago estable equivalente a $2 USD mediante redes rápidas.</p>
+            <ul>
+                <li><strong>Redes:</strong> BSC (BEP20) / TRC20</li>
+                <li>Transferencia directa a billetera o Binance Pay.</li>
+            </ul>
+            <div class="crypto-address">Dirección: 0xTuDireccionWalletDeEjemplo...</div>
+            <a href="https://wa.me/?text=Hola,%20realice%20el%20pago%20de%20USDT%20para%20la%20suscripcion%20de%20Genesis%20AI" class="btn-pay" target="_blank">Reportar Pago USDT</a>
+        </div>
+
+        <!-- BNB -->
+        <div class="payment-box">
+            <h3>🟡 BNB (Binance Coin)</h3>
+            <p>Pago en red Smart Chain (BEP20).</p>
+            <ul>
+                <li><strong>Red:</strong> BNB Smart Chain (BEP20)</li>
+                <li>Calculado al valor de mercado actual ($2 USD).</li>
+            </ul>
+            <div class="crypto-address">Dirección: 0xTuDireccionWalletDeEjemplo...</div>
+            <a href="https://wa.me/?text=Hola,%20realice%20el%20pago%20en%20BNB%20para%20Genesis%20AI" class="btn-pay" target="_blank">Reportar Pago BNB</a>
+        </div>
+
+        <!-- A1X COIN -->
+        <div class="payment-box" style="border-color: #00ff00;">
+            <h3>🧬 A1X Token (Nativo)</h3>
+            <p>Soporte oficial para el ecosistema soberano de A1X Coin.</p>
+            <ul>
+                <li><strong>Activo:</strong> A1X Repository Protocol</li>
+                <li>Paga directamente con el token del proyecto.</li>
+            </ul>
+            <div class="crypto-address">Contrato / Wallet A1X: [Tu_Wallet_A1X]</div>
+            <a href="https://wa.me/?text=Hola,%20quiero%20pagar%20mi%20suscripcion%20con%20tokens%20A1X" class="btn-pay" style="background: #00ff00; color: #000;" target="_blank">Pagar con A1X Coin</a>
+        </div>
+
+    </div>
+
+    <!-- MÉTODOS DE PAGO: FIAT Y TRADICIONALES -->
+    <div class="section-title">💳 Métodos Tradicionales y Fiat</div>
+    
+    <div class="payment-grid">
+        
+        <!-- PAGO MÓVIL Y TRANSFERENCIA -->
+        <div class="payment-box">
+            <h3>🇻🇪 Pago Móvil / Transferencia</h3>
+            <p>Pago nacional en bolívares a tasa oficial del BCV.</p>
+            <ul>
+                <li><strong>Banco:</strong> [Indicar Banco]</li>
+                <li><strong>Teléfono:</strong> [04xx-xxxxxxx]</li>
+            </ul>
+            <a href="https://wa.me/?text=Hola,%20realice%20el%20pago%20movil%20por%20la%20suscripcion%20de%20Genesis%20AI" class="btn-pay" target="_blank">Reportar Pago Móvil</a>
+        </div>
+
+        <!-- ZINLI -->
+        <div class="payment-box">
+            <h3>🟣 Zinli</h3>
+            <p>Billetera digital internacional.</p>
+            <ul>
+                <li><strong>Correo:</strong> tu-correo-zinli@email.com</li>
+            </ul>
+            <a href="https://wa.me/?text=Hola,%20realice%20el%20pago%20por%20Zinli%20para%20Genesis%20AI" class="btn-pay" target="_blank">Reportar Pago Zinli</a>
+        </div>
+
+        <!-- PAYPAL -->
+        <div class="payment-box">
+            <h3>🅿️ PayPal</h3>
+            <p>Pasarela de pagos internacional.</p>
+            <ul>
+                <li><strong>Cuenta:</strong> correo-paypal@email.com</li>
+            </ul>
+            <a href="https://paypal.me/tuusuario" class="btn-pay" target="_blank">Pagar con PayPal ($2)</a>
+        </div>
+
+    </div>
+
+    <a href="panel.html" class="back-link">← Volver al Dashboard Principal</a>
+
+</body>
+</html>
