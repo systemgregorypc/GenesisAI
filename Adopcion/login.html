@@ -15,44 +15,64 @@
             align-items: center; 
             height: 100vh; 
             margin: 0; 
-            transition: background 0.3s, color 0.3s;
+            overflow: hidden;
+            transition: background 0.4s, color 0.4s;
         }
 
-        /* ESTILOS DE LA LÁMPARA */
-        .lamp-container {
-            text-align: center;
-            margin-bottom: 15px;
+        /* ESTILOS DE LA LÁMPARA COLGANTE */
+        .hanging-lamp {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
         }
-        .lamp-cord {
+        .lamp-wire {
             width: 2px;
-            height: 35px;
-            background: #555;
-            margin: 0 auto;
+            height: 80px;
+            background: #444;
+        }
+        .lamp-shade {
+            width: 50px;
+            height: 25px;
+            background: #222;
+            border-radius: 0 0 25px 25px;
+            border: 1px solid #444;
         }
         .lamp-bulb {
-            width: 26px;
-            height: 26px;
-            background: #222;
+            width: 22px;
+            height: 22px;
+            background: #333;
             border-radius: 50%;
-            margin: 0 auto;
+            margin-top: -5px;
             cursor: pointer;
-            box-shadow: 0 0 8px rgba(0,0,0,0.8);
-            transition: background 0.3s, box-shadow 0.3s;
+            box-shadow: 0 0 10px rgba(0,0,0,0.9);
+            transition: all 0.3s ease;
         }
 
-        /* ESTADO ENCENDIDO DE LA LÁMPARA */
+        /* ESTADO LUZ ENCENDIDA */
         body.light-on {
-            background: #f1f5f9;
+            background: #f4f6f8;
             color: #0e0e0e;
         }
         body.light-on .login-box {
             background: #ffffff;
             border-color: #cbd5e1;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        body.light-on .lamp-wire {
+            background: #888;
+        }
+        body.light-on .lamp-shade {
+            background: #e2e8f0;
+            border-color: #cbd5e1;
         }
         body.light-on .lamp-bulb {
             background: #facc15;
-            box-shadow: 0 0 30px #facc15, 0 0 60px #facc15;
+            box-shadow: 0 0 40px #facc15, 0 0 80px #facc15;
         }
         body.light-on input {
             background: #f8fafc;
@@ -60,21 +80,23 @@
             border-color: #cbd5e1;
         }
         body.light-on label {
-            color: #555;
+            color: #64748b;
         }
         body.light-on .footer-logo {
-            color: #888;
+            color: #94a3b8;
         }
 
+        /* CONTENEDOR DE LOGIN ORIGINAL */
         .login-box { 
             background: #1a1a1a; 
             padding: 40px; 
             border-radius: 15px; 
-            border: 1.5px solid #6133FF; 
+            border: 1px solid #6133FF; 
             box-shadow: 0 0 20px rgba(97, 51, 255, 0.2); 
             width: 350px; 
             text-align: center;
-            transition: background 0.3s, border 0.3s;
+            transition: background 0.3s, border 0.3s, box-shadow 0.3s;
+            margin-top: 40px;
         }
         h2 { color: #6133FF; margin-bottom: 30px; letter-spacing: 3px; }
         .input-group { margin-bottom: 20px; text-align: left; }
@@ -109,9 +131,10 @@
 </head>
 <body>
 
-    <!-- LÁMPARA INTERACTIVA -->
-    <div class="lamp-container">
-        <div class="lamp-cord"></div>
+    <!-- LÁMPARA COLGANTE INTERACTIVA -->
+    <div class="hanging-lamp">
+        <div class="lamp-wire"></div>
+        <div class="lamp-shade"></div>
         <div class="lamp-bulb" id="lamp" title="Haz clic para encender o apagar la luz"></div>
     </div>
 
@@ -142,13 +165,13 @@
     </div>
 
     <script>
-        // Interruptor táctil de la lámpara
+        // Interruptor táctil de la lámpara colgante
         const lamp = document.getElementById('lamp');
         lamp.addEventListener('click', () => {
             document.body.classList.toggle('light-on');
         });
 
-        // Lógica original de inicio de sesión con el endpoint /api/auth
+        // Lógica de inicio de sesión conectada al núcleo /api/auth
         document.getElementById('loginForm').onsubmit = async (e) => {
             e.preventDefault();
             const user = document.getElementById('usuario').value;
