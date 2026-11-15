@@ -16,10 +16,10 @@
             height: 100vh; 
             margin: 0; 
             overflow: hidden;
-            transition: background 0.4s, color 0.4s;
+            transition: background 0.5s, color 0.5s;
         }
 
-        /* ESTILOS DE LA LÁMPARA CON ANIMACIÓN DE TIRÓN */
+        /* LÁMPARA Y CUERDA */
         .hanging-lamp {
             position: absolute;
             top: 0;
@@ -33,72 +33,68 @@
         }
         .lamp-wire {
             width: 2px;
-            height: 90px;
+            height: 100px;
             background: #555;
             transition: background 0.4s;
         }
         .lamp-shade {
-            width: 50px;
-            height: 25px;
+            width: 60px;
+            height: 30px;
             background: #222;
-            border-radius: 0 0 25px 25px;
+            border-radius: 0 0 30px 30px;
             border: 1px solid #444;
             transition: background 0.4s, border-color 0.4s;
         }
         .lamp-bulb {
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             background: #333;
             border-radius: 50%;
-            margin-top: -4px;
+            margin-top: -6px;
             box-shadow: 0 0 10px rgba(0,0,0,0.9);
             transition: background 0.3s, box-shadow 0.3s;
         }
         .pull-chain {
             width: 2px;
-            height: 35px;
+            height: 50px;
             background: #888;
             position: relative;
+            transition: height 0.2s ease-in-out;
         }
         .pull-chain::after {
             content: '';
             position: absolute;
-            bottom: -8px;
-            left: -3px;
-            width: 8px;
-            height: 8px;
+            bottom: -10px;
+            left: -4px;
+            width: 10px;
+            height: 10px;
             background: #aaa;
             border-radius: 50%;
         }
 
-        /* CLASE DE ANIMACIÓN PARA EL BALEO (TIRÓN) */
-        @keyframes pullAndSwing {
+        /* ANIMACIÓN DE TIRÓN Y BALANCEO */
+        @keyframes pullRope {
             0% { transform: rotate(0deg); }
-            20% { transform: rotate(8deg); }
-            40% { transform: rotate(-6deg); }
-            60% { transform: rotate(4deg); }
-            80% { transform: rotate(-2deg); }
+            15% { transform: rotate(6deg) translateY(12px); } /* Simula el tirón hacia abajo */
+            35% { transform: rotate(-5deg); }
+            55% { transform: rotate(3deg); }
+            75% { transform: rotate(-1deg); }
             100% { transform: rotate(0deg); }
         }
         .swing {
-            animation: pullAndSwing 0.6s ease-in-out;
+            animation: pullRope 0.7s ease-in-out;
         }
 
-        /* ESTADO LUZ ENCENDIDA */
+        /* ESTADO LUZ ENCENDIDA Y MENÚ DE USUARIO VISIBLE */
         body.light-on {
             background: #f4f6f8;
             color: #0e0e0e;
-        }
-        body.light-on .login-box {
-            background: #ffffff;
-            border-color: #cbd5e1;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
         body.light-on .lamp-wire { background: #888; }
         body.light-on .lamp-shade { background: #e2e8f0; border-color: #cbd5e1; }
         body.light-on .lamp-bulb {
             background: #facc15;
-            box-shadow: 0 0 40px #facc15, 0 0 80px #facc15;
+            box-shadow: 0 0 45px #facc15, 0 0 90px #facc15;
         }
         body.light-on input {
             background: #f8fafc;
@@ -107,18 +103,28 @@
         }
         body.light-on label { color: #64748b; }
         body.light-on .footer-logo { color: #94a3b8; }
+        
+        /* EL MENÚ DE USUARIO APARECE AL ENCENDER LA LÁMPARA */
+        body.light-on .login-box {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
 
-        /* CONTENEDOR DE LOGIN ORIGINAL */
+        /* CONTENEDOR DE LOGIN (OCULTO HASTA TIRAR DE LA CUERDA) */
         .login-box { 
             background: #1a1a1a; 
             padding: 40px; 
             border-radius: 15px; 
             border: 1px solid #6133FF; 
-            box-shadow: 0 0 20px rgba(97, 51, 255, 0.2); 
+            box-shadow: 0 0 25px rgba(97, 51, 255, 0.3); 
             width: 350px; 
             text-align: center;
-            transition: background 0.3s, border 0.3s, box-shadow 0.3s;
-            margin-top: 50px;
+            margin-top: 60px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-20px);
+            transition: all 0.5s ease-in-out;
         }
         h2 { color: #6133FF; margin-bottom: 30px; letter-spacing: 3px; }
         .input-group { margin-bottom: 20px; text-align: left; }
@@ -153,15 +159,16 @@
 </head>
 <body>
 
-    <!-- LÁMPARA COLGANTE CON ANIMACIÓN DE TIRÓN -->
-    <div class="hanging-lamp" id="lampTrigger" title="Haz clic para tirar de la cuerda">
+    <!-- LÁMPARA CON CUERDA INTERACTIVA -->
+    <div class="hanging-lamp" id="lampTrigger" title="Haz clic para tirar del cordón">
         <div class="lamp-wire"></div>
         <div class="lamp-shade"></div>
         <div class="lamp-bulb"></div>
-        <div class="pull-chain"></div>
+        <div class="pull-chain" id="pullChain"></div>
     </div>
 
-    <div class="login-box">
+    <!-- MENÚ DE USUARIO (APARECE AL TIRAR DEL CORDÓN) -->
+    <div class="login-box" id="loginBox">
         <h2>GÉNESIS AI</h2>
         <p style="color: #6133FF; font-size: 0.9em; margin-bottom: 20px;">Identificación de Investigador</p>
         
@@ -188,19 +195,20 @@
     </div>
 
     <script>
-        // Animación de tirón y balanceo de la lámpara al hacer clic
         const lamp = document.getElementById('lampTrigger');
+        
+        // Al hacer clic en la lámpara o la cuerda, se tira de ella
         lamp.addEventListener('click', () => {
-            // Alterna el estado de la luz
+            // Alterna el encendido de la luz y la aparición del menú
             document.body.classList.toggle('light-on');
 
-            // Aplica la animación física de balanceo
+            // Dispara la animación de tirón y balanceo físico
             lamp.classList.remove('swing');
-            void lamp.offsetWidth; // Reinicia la animación CSS
+            void lamp.offsetWidth; // Reinicia el contador de animaciones CSS
             lamp.classList.add('swing');
         });
 
-        // Lógica de inicio de sesión conectada al núcleo /api/auth
+        // Lógica original de inicio de sesión conectada al núcleo /api/auth
         document.getElementById('loginForm').onsubmit = async (e) => {
             e.preventDefault();
             const user = document.getElementById('usuario').value;
