@@ -3,307 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acceso — Génesis AI</title>
+    <title>Acceso - GÉNESIS AI</title>
     <style>
-        /* Reset y fondo base oscuro de Génesis AI */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-        }
-
-        body {
-            min-height: 100vh;
-            background: #070b14;
-            color: #fff;
-            display: flex;
+        body { 
+            background: #0e0e0e; 
+            color: white; 
+            font-family: 'Segoe UI', sans-serif; 
+            display: flex; 
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-            transition: background 0.6s ease;
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+            transition: background 0.3s, color 0.3s;
         }
 
-        /* Cuando la lámpara se enciende, el ambiente se ilumina sutilmente */
-        body.light-on {
-            background: radial-gradient(circle at 50% 25%, #11223a 0%, #070b14 75%);
+        /* ESTILOS DE LA LÁMPARA */
+        .lamp-container {
+            text-align: center;
+            margin-bottom: 15px;
         }
-
-        /* --- ESTRUCTURA DE LA LÁMPARA --- */
-        .lamp-wrapper {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 20;
-        }
-
-        /* Cable superior */
-        .lamp-wire {
-            width: 4px;
-            height: 70px;
-            background: #2c3545;
-        }
-
-        /* Pantalla de la lámpara */
-        .lamp-shade {
-            width: 110px;
-            height: 55px;
-            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-            border-radius: 55px 55px 10px 10px;
-            border-bottom: 3px solid #00f2fe;
-            position: relative;
-            z-index: 2;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
-        }
-
-        /* Bombilla */
-        .lamp-bulb {
-            width: 34px;
-            height: 34px;
-            background: #334155;
-            border-radius: 50%;
-            margin-top: -12px;
-            z-index: 1;
-            transition: all 0.4s ease;
-        }
-
-        /* Estado encendido de la bombilla */
-        body.light-on .lamp-bulb {
-            background: #00f2fe;
-            box-shadow: 
-                0 0 20px #00f2fe,
-                0 0 50px #00f2fe,
-                0 0 100px rgba(0, 242, 254, 0.8);
-        }
-
-        /* Haz de luz proyectado hacia el login */
-        .light-beam {
-            position: absolute;
-            top: 120px;
-            width: 480px;
-            height: 520px;
-            background: linear-gradient(180deg, rgba(0, 242, 254, 0.22) 0%, rgba(0, 242, 254, 0) 85%);
-            clip-path: polygon(38% 0%, 62% 0%, 100% 100%, 0% 100%);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
-            z-index: 1;
-        }
-
-        body.light-on .light-beam {
-            opacity: 1;
-        }
-
-        /* Cuerda interactiva para encender */
-        .pull-cord {
-            position: absolute;
-            top: 115px;
-            right: 22px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            z-index: 25;
-            transition: transform 0.2s ease;
-        }
-
-        .pull-cord:active {
-            transform: translateY(14px);
-        }
-
-        .cord-line {
+        .lamp-cord {
             width: 2px;
-            height: 65px;
-            background: #94a3b8;
-            transition: height 0.2s ease;
+            height: 35px;
+            background: #555;
+            margin: 0 auto;
         }
-
-        .pull-cord:active .cord-line {
-            height: 80px;
-        }
-
-        .cord-handle {
-            width: 14px;
-            height: 14px;
+        .lamp-bulb {
+            width: 26px;
+            height: 26px;
+            background: #222;
             border-radius: 50%;
-            background: #00f2fe;
-            box-shadow: 0 0 10px rgba(0, 242, 254, 0.7);
-            animation: pulseHint 2s infinite;
-        }
-
-        @keyframes pulseHint {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.25); }
-        }
-
-        .hint-text {
-            position: absolute;
-            top: 215px;
-            font-size: 0.85rem;
-            color: #64748b;
-            letter-spacing: 1px;
-            transition: opacity 0.4s ease;
-            pointer-events: none;
-        }
-
-        body.light-on .hint-text {
-            opacity: 0;
-        }
-
-        /* --- CONTENEDOR DE TU DISEÑO ORIGINAL DE LOGIN --- */
-        .login-container {
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            max-width: 400px;
-            margin-top: 110px;
-            padding: 35px 30px;
-            background: rgba(15, 23, 42, 0.88);
-            border: 1px solid rgba(0, 242, 254, 0.35);
-            border-radius: 16px;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
-            
-            /* Oculto antes de encender la lámpara */
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(30px) scale(0.96);
-            transition: all 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        /* Visible al encender la lámpara */
-        body.light-on .login-container {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
-        }
-
-        /* Estilos estándar de tus inputs y botones (reemplazar por los tuyos si deseas) */
-        .login-container h2 {
-            text-align: center;
-            margin-bottom: 8px;
-            color: #00f2fe;
-            font-size: 1.6rem;
-        }
-
-        .login-container p.subtitle {
-            text-align: center;
-            color: #94a3b8;
-            font-size: 0.9rem;
-            margin-bottom: 24px;
-        }
-
-        .input-group {
-            margin-bottom: 18px;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 0.85rem;
-            color: #cbd5e1;
-            margin-bottom: 6px;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px 14px;
-            background: rgba(7, 11, 20, 0.8);
-            border: 1px solid #334155;
-            border-radius: 8px;
-            color: #fff;
-            font-size: 0.95rem;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .input-group input:focus {
-            border-color: #00f2fe;
-        }
-
-        .btn-login {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
-            border: none;
-            border-radius: 8px;
-            color: #000;
-            font-weight: bold;
-            font-size: 1rem;
+            margin: 0 auto;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 0 8px rgba(0,0,0,0.8);
+            transition: background 0.3s, box-shadow 0.3s;
         }
 
-        .btn-login:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(0, 242, 254, 0.4);
+        /* ESTADO ENCENDIDO DE LA LÁMPARA */
+        body.light-on {
+            background: #f1f5f9;
+            color: #0e0e0e;
+        }
+        body.light-on .login-box {
+            background: #ffffff;
+            border-color: #cbd5e1;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        body.light-on .lamp-bulb {
+            background: #facc15;
+            box-shadow: 0 0 30px #facc15, 0 0 60px #facc15;
+        }
+        body.light-on input {
+            background: #f8fafc;
+            color: #0e0e0e;
+            border-color: #cbd5e1;
+        }
+        body.light-on label {
+            color: #555;
+        }
+        body.light-on .footer-logo {
+            color: #888;
         }
 
-        .extra-links {
-            margin-top: 18px;
+        .login-box { 
+            background: #1a1a1a; 
+            padding: 40px; 
+            border-radius: 15px; 
+            border: 1.5px solid #6133FF; 
+            box-shadow: 0 0 20px rgba(97, 51, 255, 0.2); 
+            width: 350px; 
             text-align: center;
-            font-size: 0.85rem;
+            transition: background 0.3s, border 0.3s;
         }
-
-        .extra-links a {
-            color: #00f2fe;
-            text-decoration: none;
+        h2 { color: #6133FF; margin-bottom: 30px; letter-spacing: 3px; }
+        .input-group { margin-bottom: 20px; text-align: left; }
+        label { color: #888; font-size: 0.8em; margin-bottom: 5px; display: block; }
+        input { 
+            width: 100%; 
+            padding: 12px; 
+            background: #222; 
+            border: 1px solid #333; 
+            border-radius: 5px; 
+            color: white; 
+            box-sizing: border-box;
+            transition: 0.3s;
         }
+        input:focus { border-color: #6133FF; outline: none; background: #2a2a2a; }
+        .btn-access { 
+            width: 100%; 
+            padding: 12px; 
+            background: #6133FF; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            font-size: 1em;
+            margin-top: 10px;
+        }
+        .btn-access:hover { background: #4b28cc; }
+        .footer-logo { margin-top: 30px; font-size: 0.7em; color: #444; }
+        a { color: #6133FF; text-decoration: none; font-size: 0.85em; display: block; margin-top: 15px; }
     </style>
 </head>
 <body>
 
-    <!-- Lámpara interactiva -->
-    <div class="lamp-wrapper">
-        <div class="lamp-wire"></div>
-        <div class="lamp-shade"></div>
-        <div class="lamp-bulb"></div>
-        <div class="light-beam"></div>
-
-        <!-- Cuerda para encender/apagar -->
-        <div class="pull-cord" id="pullCord" title="Tira de la cuerda para encender">
-            <div class="cord-line"></div>
-            <div class="cord-handle"></div>
-        </div>
+    <!-- LÁMPARA INTERACTIVA -->
+    <div class="lamp-container">
+        <div class="lamp-cord"></div>
+        <div class="lamp-bulb" id="lamp" title="Haz clic para encender o apagar la luz"></div>
     </div>
 
-    <div class="hint-text">💡 Tira de la cuerda para activar Génesis AI</div>
-
-    <!-- AQUÍ VA TU DISEÑO ORIGINAL DEL LOGIN -->
-    <div class="login-container">
-        <h2>Génesis AI</h2>
-        <p class="subtitle">Inicia sesión en la red de humanos y máquinas</p>
+    <div class="login-box">
+        <h2>GÉNESIS AI</h2>
+        <p style="color: #6133FF; font-size: 0.9em; margin-bottom: 20px;">Identificación de Investigador</p>
         
-        <!-- Puedes pegar aquí exactamente tu <form> y tus <script> originales -->
         <form id="loginForm">
             <div class="input-group">
-                <label for="usuario">Usuario o Correo</label>
-                <input type="text" id="usuario" name="usuario" placeholder="Ingresa tu usuario" required>
+                <label>USUARIO</label>
+                <input type="text" id="usuario" placeholder="Ingrese su usuario" required>
             </div>
             <div class="input-group">
-                <label for="password">Contraseña</label>
-                <input type="password" id="password" name="password" placeholder="••••••••" required>
+                <label>CLAVE DE ACCESO</label>
+                <input type="password" id="password" placeholder="••••••••" required>
             </div>
-            <button type="submit" class="btn-login">Entrar al Sistema</button>
+            <button type="submit" class="btn-access">INICIAR NÚCLEO</button>
         </form>
 
-        <div class="extra-links">
-            <a href="planes.html">¿Aún no tienes cuenta? Ver Planes ($2 USD)</a>
+        <a href="registro.html">¿No tienes cuenta? Crear Identidad</a>
+
+        <div id="mensaje" style="margin-top: 15px; font-size: 0.8em; color: #ff3333;"></div>
+        
+        <div class="footer-logo">
+            GENESIS IA PLATAFORMA <br>
+            Investigación Biotecnológica y Fusión
         </div>
     </div>
 
     <script>
-        // Controlador de encendido de la lámpara
-        const pullCord = document.getElementById('pullCord');
-        
-        pullCord.addEventListener('click', () => {
+        // Interruptor táctil de la lámpara
+        const lamp = document.getElementById('lamp');
+        lamp.addEventListener('click', () => {
             document.body.classList.toggle('light-on');
         });
+
+        // Lógica original de inicio de sesión con el endpoint /api/auth
+        document.getElementById('loginForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const user = document.getElementById('usuario').value;
+            const pass = document.getElementById('password').value;
+            const mensaje = document.getElementById('mensaje');
+
+            mensaje.innerText = "Agatha: Verificando credenciales en el núcleo...";
+            mensaje.style.color = "#6133FF";
+
+            try {
+                const response = await fetch('/api/auth', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        username: user, 
+                        password: pass, 
+                        action: 'login' 
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    sessionStorage.setItem('usuario', data.user);
+                    window.location.href = "panel.html";
+                } else {
+                    mensaje.innerText = data.error || "Acceso denegado. Verifique sus datos.";
+                    mensaje.style.color = "#ff3333";
+                }
+            } catch (error) {
+                mensaje.innerText = "Fallo crítico: No se pudo conectar con el núcleo en /api/auth.";
+                mensaje.style.color = "#ff3333";
+                console.error("Error de conexión:", error);
+            }
+        };
     </script>
 </body>
 </html>
