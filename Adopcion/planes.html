@@ -188,16 +188,34 @@
             <a href="https://wa.me/?text=Hola,%20realice%20el%20pago%20en%20BNB%20para%20Genesis%20AI" class="btn-pay" target="_blank">Reportar Pago BNB</a>
         </div>
 
-        <!-- A1X COIN -->
-        <div class="payment-box" style="border-color: #00ff00;">
-            <h3>🧬 A1X Token (Nativo)</h3>
-            <p>Soporte oficial para el ecosistema soberano de A1X Coin.</p>
+       <!-- CRYPTO A1X (Binance Smart Chain) -->
+        <div class="payment-box" style="border: 1px solid #f3ba2f; background: rgba(243, 186, 47, 0.05);">
+            <h3>🪙 Token A1X (Red BSC)</h3>
+            <p>Paga tu suscripción mensual enviando el equivalente a $2.00 USD en tokens A1X.</p>
             <ul>
-                <li><strong>Activo:</strong> A1X Repository Protocol</li>
-                <li>Paga directamente con el token del proyecto.</li>
+                <li><strong>Red:</strong> Binance Smart Chain (BEP-20)</li>
+                <li><strong style="color: #f3ba2f;">Contrato A1X:</strong><br>
+                    <span style="font-family: monospace; font-size: 0.78em; color: #ccc; word-break: break-all;">0x1adea4661d20e166992237EA0C30E2A06FE045</span>
+                </li>
+                <li style="margin-top: 8px;"><strong style="color: #f3ba2f;">Wallet MetaMask para Cobros:</strong><br>
+                    <span id="wallet-a1x" style="font-family: monospace; font-size: 0.82em; color: #00f2fe; word-break: break-all;">0x1aD4EeA4661D20e16C992237Ea0C30a2a06FE045</span>
+                </li>
             </ul>
-            <div class="crypto-address">Contrato / Wallet A1X: [Tu_Wallet_A1X]</div>
-            <a href="https://wa.me/?text=Hola,%20quiero%20pagar%20mi%20suscripcion%20con%20tokens%20A1X" class="btn-pay" style="background: #00ff00; color: #000;" target="_blank">Pagar con A1X Coin</a>
+
+            <!-- Botón para copiar la dirección de MetaMask rápidamente -->
+            <button type="button" onclick="navigator.clipboard.writeText('0x1aD4EeA4661D20e16C992237Ea0C30a2a06FE045'); alert('¡Dirección de MetaMask copiada al portapapeles!');" class="btn-pay" style="background: #1e293b; border: 1px solid #00f2fe; color: #00f2fe; font-size: 0.9em; margin-bottom: 8px; cursor: pointer; width: 100%;">
+                📋 Copiar Wallet MetaMask
+            </button>
+
+            <!-- Enlace para verificar el contrato en BscScan -->
+            <a href="https://bscscan.com/token/0x1adea4661d20e166992237EA0C30E2A06FE045" class="btn-pay" style="background: #222; border: 1px solid #f3ba2f; color: #f3ba2f; font-size: 0.9em; margin-bottom: 10px;" target="_blank">
+                🔍 Ver Contrato en BscScan
+            </a>
+
+            <!-- Botón de notificación a WhatsApp -->
+            <a href="https://wa.me/584143767524?text=Hola,%20he%20realizado%20el%20pago%20de%20mi%20suscripcion%20de%20Genesis%20AI%20con%20tokens%20A1X%20a%20la%20wallet%20de%20MetaMask.%20Adjunto%20el%20hash%20de%20la%20transaccion." class="btn-pay" style="background: #f3ba2f; color: #000; font-weight: bold;" target="_blank">
+                Notificar Pago con A1X por WhatsApp
+            </a>
         </div>
 
     </div>
