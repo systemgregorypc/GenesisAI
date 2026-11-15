@@ -164,16 +164,28 @@
     
     <div class="payment-grid">
         
-        <!-- USDT -->
-        <div class="payment-box">
-            <h3>💲 USDT (Tether)</h3>
-            <p>Pago estable equivalente a $2 USD mediante redes rápidas.</p>
+        <!-- CRYPTO USDT / BNB BINANCE (BEP20) -->
+        <div class="payment-box" style="border: 1px solid #26a17b; background: rgba(38, 161, 123, 0.05);">
+            <h3>💵 USDT / BNB — Binance (Red BEP20)</h3>
+            <p>Depósito directo a billetera Binance en red BNB Smart Chain (BEP20).</p>
             <ul>
-                <li><strong>Redes:</strong> BSC (BEP20) / TRC20</li>
-                <li>Transferencia directa a billetera o Binance Pay.</li>
+                <li><strong>Exchange:</strong> Binance</li>
+                <li><strong>Red:</strong> BNB Smart Chain (BEP20)</li>
+                <li><strong>Monto:</strong> 2.00 USDT (o equivalente en BNB)</li>
+                <li style="margin-top: 8px;"><strong style="color: #26a17b;">Dirección de Depósito Binance (BEP20):</strong><br>
+                    <span id="wallet-binance-usdt" style="font-family: monospace; font-size: 0.82em; color: #00f2fe; word-break: break-all;">0xb0a5dbddefb2f774d5824b38b7092c4113981b48</span>
+                </li>
             </ul>
-            <div class="crypto-address">Dirección: 0xTuDireccionWalletDeEjemplo...</div>
-            <a href="https://wa.me/?text=Hola,%20realice%20el%20pago%20de%20USDT%20para%20la%20suscripcion%20de%20Genesis%20AI" class="btn-pay" target="_blank">Reportar Pago USDT</a>
+
+            <!-- Botón para copiar la dirección de Binance en un clic -->
+            <button type="button" onclick="navigator.clipboard.writeText('0xb0a5dbddefb2f774d5824b38b7092c4113981b48'); alert('¡Dirección USDT de Binance (BEP20) copiada al portapapeles!');" class="btn-pay" style="background: #1e293b; border: 1px solid #26a17b; color: #26a17b; font-size: 0.9em; margin-bottom: 10px; cursor: pointer; width: 100%;">
+                📋 Copiar Dirección USDT (Binance)
+            </button>
+
+            <!-- Botón de notificación a WhatsApp -->
+            <a href="https://wa.me/584143767524?text=Hola,%20acabo%20de%20enviar%202.00%20USDT%20(Red%20BEP20)%20a%20tu%20billetera%20de%20Binance%20para%20activar%20mi%20suscripcion%20de%20Genesis%20AI.%20Adjunto%20el%20comprobante." class="btn-pay" style="background: #26a17b; color: #fff; font-weight: bold;" target="_blank">
+                Notificar Pago USDT por WhatsApp
+            </a>
         </div>
 
      <!-- CRYPTO BNB & USDT (BEP20) -->
