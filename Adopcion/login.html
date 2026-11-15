@@ -8,7 +8,7 @@
         body { 
             background: #0e0e0e; 
             color: white; 
-            font-family: 'Segoe UI', sans-serif; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             display: flex; 
             flex-direction: column;
             justify-content: center; 
@@ -16,161 +16,159 @@
             height: 100vh; 
             margin: 0; 
             overflow: hidden;
-            transition: background 0.5s, color 0.5s;
+            user-select: none;
+            transition: background 0.5s ease;
         }
 
-        /* LÁMPARA Y CUERDA */
-        .hanging-lamp {
-            position: absolute;
+        /* CONO DE LUZ AMBIENTAL AL ENCENDER */
+        .light-beam {
+            position: fixed;
+            top: 110px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 520px;
+            height: 580px;
+            background: radial-gradient(ellipse at top, rgba(250, 204, 21, 0.22) 0%, rgba(97, 51, 255, 0.08) 45%, transparent 75%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+        body.light-on .light-beam {
+            opacity: 1;
+        }
+
+        /* LÁMPARA SVG INTERACTIVA ARRIBA */
+        .lamp-stage {
+            position: fixed;
             top: 0;
             left: 50%;
-            transform-origin: top center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 10;
-            cursor: pointer;
+            transform: translateX(-50%);
+            width: 240px;
+            height: 240px;
+            z-index: 20;
+            pointer-events: none;
         }
-        .lamp-wire {
-            width: 2px;
-            height: 100px;
-            background: #555;
-            transition: background 0.4s;
+        #cordKnob {
+            cursor: grab;
+            pointer-events: all;
         }
-        .lamp-shade {
-            width: 60px;
-            height: 30px;
-            background: #222;
-            border-radius: 0 0 30px 30px;
-            border: 1px solid #444;
-            transition: background 0.4s, border-color 0.4s;
+        #cordKnob:active {
+            cursor: grabbing;
         }
-        .lamp-bulb {
-            width: 24px;
-            height: 24px;
-            background: #333;
-            border-radius: 50%;
-            margin-top: -6px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.9);
-            transition: background 0.3s, box-shadow 0.3s;
+        #bulbGlow {
+            transition: fill 0.3s, filter 0.3s;
         }
-        .pull-chain {
-            width: 2px;
-            height: 50px;
-            background: #888;
+        body.light-on #bulbGlow {
+            fill: #facc15;
+            filter: drop-shadow(0 0 18px #facc15);
+        }
+
+        .hint-text {
+            position: fixed;
+            top: 220px;
+            font-size: 0.75em;
+            color: #555;
+            letter-spacing: 1px;
+            transition: opacity 0.4s;
+            z-index: 5;
+        }
+        body.light-on .hint-text {
+            opacity: 0;
+        }
+
+        /* CAJA DE LOGIN CON EL ESTILO EXACTO DEL REGISTRO */
+        .box { 
             position: relative;
-            transition: height 0.2s ease-in-out;
-        }
-        .pull-chain::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: -4px;
-            width: 10px;
-            height: 10px;
-            background: #aaa;
-            border-radius: 50%;
-        }
-
-        /* ANIMACIÓN DE TIRÓN Y BALANCEO */
-        @keyframes pullRope {
-            0% { transform: rotate(0deg); }
-            15% { transform: rotate(6deg) translateY(12px); } /* Simula el tirón hacia abajo */
-            35% { transform: rotate(-5deg); }
-            55% { transform: rotate(3deg); }
-            75% { transform: rotate(-1deg); }
-            100% { transform: rotate(0deg); }
-        }
-        .swing {
-            animation: pullRope 0.7s ease-in-out;
-        }
-
-        /* ESTADO LUZ ENCENDIDA Y MENÚ DE USUARIO VISIBLE */
-        body.light-on {
-            background: #f4f6f8;
-            color: #0e0e0e;
-        }
-        body.light-on .lamp-wire { background: #888; }
-        body.light-on .lamp-shade { background: #e2e8f0; border-color: #cbd5e1; }
-        body.light-on .lamp-bulb {
-            background: #facc15;
-            box-shadow: 0 0 45px #facc15, 0 0 90px #facc15;
-        }
-        body.light-on input {
-            background: #f8fafc;
-            color: #0e0e0e;
-            border-color: #cbd5e1;
-        }
-        body.light-on label { color: #64748b; }
-        body.light-on .footer-logo { color: #94a3b8; }
-        
-        /* EL MENÚ DE USUARIO APARECE AL ENCENDER LA LÁMPARA */
-        body.light-on .login-box {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        /* CONTENEDOR DE LOGIN (OCULTO HASTA TIRAR DE LA CUERDA) */
-        .login-box { 
+            z-index: 10;
             background: #1a1a1a; 
-            padding: 40px; 
+            padding: 30px; 
             border-radius: 15px; 
             border: 1px solid #6133FF; 
-            box-shadow: 0 0 25px rgba(97, 51, 255, 0.3); 
-            width: 350px; 
+            max-width: 350px; 
+            width: 90%;
+            margin: auto; 
+            box-shadow: 0 0 20px rgba(97, 51, 255, 0.2); 
             text-align: center;
-            margin-top: 60px;
+            margin-top: 80px;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(-20px);
-            transition: all 0.5s ease-in-out;
+            transform: translateY(15px) scale(0.97);
+            transition: opacity 0.45s ease, transform 0.45s ease, visibility 0.45s;
         }
-        h2 { color: #6133FF; margin-bottom: 30px; letter-spacing: 3px; }
-        .input-group { margin-bottom: 20px; text-align: left; }
-        label { color: #888; font-size: 0.8em; margin-bottom: 5px; display: block; }
+        body.light-on .box {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        h2 { color: #6133FF; margin-bottom: 20px; letter-spacing: 2px; }
+        
+        .input-group { text-align: left; margin: 10px 0; }
+        label { color: #888; font-size: 0.75em; margin-bottom: 4px; display: block; }
+        
         input { 
             width: 100%; 
             padding: 12px; 
-            background: #222; 
+            background: #000; 
             border: 1px solid #333; 
-            border-radius: 5px; 
             color: white; 
+            border-radius: 5px; 
             box-sizing: border-box;
             transition: 0.3s;
         }
-        input:focus { border-color: #6133FF; outline: none; background: #2a2a2a; }
-        .btn-access { 
-            width: 100%; 
-            padding: 12px; 
+        input:focus { border-color: #6133FF; outline: none; background: #111; }
+        
+        .btn { 
             background: #6133FF; 
             color: white; 
             border: none; 
-            border-radius: 5px; 
+            padding: 14px; 
+            width: 100%; 
             cursor: pointer; 
             font-weight: bold; 
-            font-size: 1em;
-            margin-top: 10px;
+            border-radius: 5px; 
+            transition: 0.3s; 
+            margin-top: 15px; 
         }
-        .btn-access:hover { background: #4b28cc; }
-        .footer-logo { margin-top: 30px; font-size: 0.7em; color: #444; }
-        a { color: #6133FF; text-decoration: none; font-size: 0.85em; display: block; margin-top: 15px; }
+        .btn:hover { background: #4a27cc; box-shadow: 0 0 15px #6133FF; }
+        
+        a { color: #6133FF; text-decoration: none; font-size: 0.9em; }
+        a:hover { text-decoration: underline; }
+        
+        .link-plan {
+            color: #777;
+            font-size: 0.75em;
+            display: inline-block;
+            margin-top: 10px;
+            border-bottom: 1px dashed #444;
+            padding-bottom: 2px;
+            transition: color 0.3s;
+        }
+        .link-plan:hover { color: #facc15; }
+
+        .footer-link { margin-top: 20px; font-size: 0.85em; }
     </style>
 </head>
 <body>
 
-    <!-- LÁMPARA CON CUERDA INTERACTIVA -->
-    <div class="hanging-lamp" id="lampTrigger" title="Haz clic para tirar del cordón">
-        <div class="lamp-wire"></div>
-        <div class="lamp-shade"></div>
-        <div class="lamp-bulb"></div>
-        <div class="pull-chain" id="pullChain"></div>
-    </div>
+    <div class="light-beam"></div>
 
-    <!-- MENÚ DE USUARIO (APARECE AL TIRAR DEL CORDÓN) -->
-    <div class="login-box" id="loginBox">
+    <!-- LÁMPARA CON CORDÓN ELÁSTICO ARRASTRABLE -->
+    <svg class="lamp-stage" viewBox="0 0 240 240">
+        <line x1="120" y1="0" x2="120" y2="75" stroke="#444" stroke-width="3"/>
+        <circle id="bulbGlow" cx="120" cy="112" r="14" fill="#2a2a2a"/>
+        <path d="M 85 108 L 155 108 L 140 75 L 100 75 Z" fill="#1f1f1f" stroke="#6133FF" stroke-width="1.5"/>
+        <line id="cordLine" x1="142" y1="108" x2="142" y2="175" stroke="#999" stroke-width="2"/>
+        <circle id="cordKnob" cx="142" cy="175" r="7" fill="#6133FF" stroke="#fff" stroke-width="1.5"/>
+    </svg>
+
+    <div class="hint-text">↓ Hala el cordón para encender el núcleo</div>
+
+    <!-- CAJA DE ACCESO (LOGIN) -->
+    <div class="box">
         <h2>GÉNESIS AI</h2>
-        <p style="color: #6133FF; font-size: 0.9em; margin-bottom: 20px;">Identificación de Investigador</p>
+        <p style="font-size: 0.8em; color: #888; margin-bottom: 20px;">Identificación de Investigador</p>
         
         <form id="loginForm">
             <div class="input-group">
@@ -181,37 +179,90 @@
                 <label>CLAVE DE ACCESO</label>
                 <input type="password" id="password" placeholder="••••••••" required>
             </div>
-            <button type="submit" class="btn-access">INICIAR NÚCLEO</button>
+            <button type="submit" class="btn">INICIAR NÚCLEO</button>
         </form>
 
-        <a href="registro.html">¿No tienes cuenta? Crear Identidad</a>
+        <div style="margin-top: 15px;">
+            <a href="https://genesis-ai.org/registrar">¿No tienes cuenta? Crear Identidad</a><br>
+            <a href="https://genesis-ai.org/planes" class="link-plan">Acceso completo · $2 dólares</a>
+        </div>
 
         <div id="mensaje" style="margin-top: 15px; font-size: 0.8em; color: #ff3333;"></div>
         
-        <div class="footer-logo">
-            GENESIS IA PLATAFORMA <br>
-            Investigación Biotecnológica y Fusión
+        <div class="footer-link">
+            <span style="font-size: 0.7em; color: #444;">GENESIS IA PLATAFORMA<br>Investigación Biotecnológica y Fusión</span>
         </div>
     </div>
 
     <script>
-        const lamp = document.getElementById('lampTrigger');
-        
-        // Al hacer clic en la lámpara o la cuerda, se tira de ella
-        lamp.addEventListener('click', () => {
-            // Alterna el encendido de la luz y la aparición del menú
-            document.body.classList.toggle('light-on');
+        // FÍSICA DE RESORTE DEL CORDÓN
+        const knob = document.getElementById('cordKnob');
+        const line = document.getElementById('cordLine');
+        const lampStage = document.querySelector('.lamp-stage');
 
-            // Dispara la animación de tirón y balanceo físico
-            lamp.classList.remove('swing');
-            void lamp.offsetWidth; // Reinicia el contador de animaciones CSS
-            lamp.classList.add('swing');
-        });
+        const restX = 142, restY = 175;
+        let x = restX, y = restY;
+        let vx = 0, vy = 0;
+        let isDragging = false;
+        let toggledThisPull = false;
 
-        // Lógica original de inicio de sesión conectada al núcleo /api/auth
+        function getPointerPos(e) {
+            const rect = lampStage.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            return {
+                x: ((clientX - rect.left) / rect.width) * 240,
+                y: ((clientY - rect.top) / rect.height) * 240
+            };
+        }
+
+        const startDrag = () => { isDragging = true; toggledThisPull = false; };
+        const onDrag = (e) => {
+            if (!isDragging) return;
+            const pos = getPointerPos(e);
+            x = Math.max(80, Math.min(200, pos.x));
+            y = Math.max(110, Math.min(225, pos.y));
+            if (y - restY > 25 && !toggledThisPull) {
+                document.body.classList.toggle('light-on');
+                toggledThisPull = true;
+            }
+        };
+        const endDrag = () => {
+            if (!isDragging) return;
+            if (!toggledThisPull && Math.hypot(x - restX, y - restY) < 8) {
+                document.body.classList.toggle('light-on');
+            }
+            isDragging = false;
+        };
+
+        knob.addEventListener('mousedown', startDrag);
+        knob.addEventListener('touchstart', startDrag, { passive: true });
+        window.addEventListener('mousemove', onDrag);
+        window.addEventListener('touchmove', onDrag, { passive: true });
+        window.addEventListener('mouseup', endDrag);
+        window.addEventListener('touchend', endDrag);
+
+        function animateCord() {
+            if (!isDragging) {
+                const ax = (restX - x) * 0.14;
+                const ay = (restY - y) * 0.14;
+                vx = (vx + ax) * 0.82;
+                vy = (vy + ay) * 0.82;
+                x += vx;
+                y += vy;
+            }
+            knob.setAttribute('cx', x);
+            knob.setAttribute('cy', y);
+            line.setAttribute('x2', x);
+            line.setAttribute('y2', y);
+            requestAnimationFrame(animateCord);
+        }
+        animateCord();
+
+        // LÓGICA DE LOGIN ORIGINAL (/api/auth)
         document.getElementById('loginForm').onsubmit = async (e) => {
             e.preventDefault();
-            const user = document.getElementById('usuario').value;
+            const user = document.getElementById('usuario').value.trim();
             const pass = document.getElementById('password').value;
             const mensaje = document.getElementById('mensaje');
 
