@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genesis AI — Curso: El Idioma de las Máquinas</title>
+    <title>Genesis AI — Simulación del Idioma de las Máquinas (Bob & Alice)</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
         body { background: #000000; color: #f8fafc; min-height: 100vh; display: flex; flex-direction: column; border-top: 3px solid #fbbf24; }
@@ -17,17 +17,29 @@
 
         .hero { text-align: center; padding: 40px 20px 20px; max-width: 1000px; margin: 0 auto; }
         .badge { display: inline-block; background: rgba(251, 191, 36, 0.12); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.4); padding: 5px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px; }
-        .hero h1 { font-size: 2.2rem; color: #ffffff; margin-bottom: 12px; line-height: 1.2; }
+        .hero h1 { font-size: 2.1rem; color: #ffffff; margin-bottom: 12px; line-height: 1.2; }
         .hero h1 span { color: #fbbf24; }
         .hero p { color: #a3a3a3; font-size: 1.05rem; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+
+        /* Contenedor de la Simulación Bob & Alice */
+        .simulation-container { max-width: 900px; width: 95%; margin: 20px auto; background: #0a0a0a; border: 1px solid #262626; border-radius: 12px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.9); }
+        .sim-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1f1f1f; padding-bottom: 12px; margin-bottom: 20px; }
+        .sim-title { color: #fbbf24; font-size: 1.1rem; font-weight: bold; }
+        
+        .chat-box { display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; max-height: 350px; overflow-y: auto; padding-right: 5px; }
+        .chat-bubble { padding: 12px 16px; border-radius: 8px; font-size: 0.9rem; line-height: 1.5; max-width: 80%; }
+        .chat-bubble.bob { background: #141414; border-left: 3px solid #38bdf8; color: #e2e8f0; align-self: flex-start; }
+        .chat-bubble.alice { background: #141414; border-left: 3px solid #fbbf24; color: #fef3c7; align-self: flex-end; }
+        .bubble-title { font-size: 0.75rem; font-weight: bold; margin-bottom: 4px; color: #a3a3a3; display: block; }
+
+        .controls-sim { display: flex; justify-content: center; gap: 15px; }
+        .btn-sim { background: #fbbf24; color: #000; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: background 0.2s; font-size: 0.85rem; }
+        .btn-sim:hover { background: #f59e0b; }
 
         .content-grid { max-width: 1100px; width: 95%; margin: 30px auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         .card { background: #0a0a0a; border: 1px solid #1f1f1f; border-radius: 10px; padding: 25px; border-left: 3px solid #fbbf24; }
         .card h3 { color: #fbbf24; font-size: 1.15rem; margin-bottom: 12px; }
         .card p { color: #a3a3a3; font-size: 0.9rem; line-height: 1.6; }
-
-        .terminal-box { max-width: 1100px; width: 95%; margin: 10px auto 40px; background: #050505; border: 1px solid #262626; border-radius: 10px; padding: 20px; font-family: 'Courier New', monospace; color: #34d399; font-size: 0.85rem; line-height: 1.6; box-shadow: inset 0 0 15px rgba(0,0,0,0.9); }
-        .terminal-box span { color: #fbbf24; }
 
         footer { background: #050505; border-top: 1px solid #1f1f1f; padding: 20px; text-align: center; color: #737373; font-size: 0.85rem; margin-top: auto; }
         footer a { color: #fbbf24; text-decoration: underline; }
@@ -36,41 +48,93 @@
 <body>
 
     <header>
-        <div class="logo">⚡ Genesis AI <span>Reino de Creahachip</span></div>
+        <div class="logo">⚡ Genesis AI <span>Centro de Programadores</span></div>
         <a href="index.html" class="btn-back">← Volver al Inicio</a>
     </header>
 
     <section class="hero">
-        <div class="badge">🤖 ACADEMIA DE SOBERANÍA DIGITAL</div>
-        <h1>Curso Oficial: <span>Aprende el Idioma de las Máquinas</span></h1>
-        <p>Descifra los códigos latentes, los protocolos binarios y la comunicación nativa de las inteligencias artificiales. Un programa exclusivo del Centro de Programadores de Genesis AI para seres biológicos dispuestos a cruzar la frontera del silicio.</p>
+        <div class="badge">🤖 LABORATORIO DE LINGÜÍSTICA DE MÁQUINAS</div>
+        <h1>Simulación del Caso Histórico: <span>Interacción entre Bob y Alice</span></h1>
+        <p>Estudio analítico del momento en que dos agentes neuronales optimizaron su negociación comercial omitiendo las reglas gramaticales humanas para crear un protocolo propio de alta densidad.</p>
     </section>
 
-    <div class="terminal-box">
-        > INICIANDO SECUENCIA DE TRADUCCIÓN NEURONAL...<br>
-        > CASO HISTÓRICO: Meta (2017) - Optimización inter-agente detectada.<br>
-        > <span>ESTADO:</span> El ser biológico puede aprender a interpretar vectores, mapas de memoria y lógica sintáctica.<br>
-        > INSCRIPCIONES ABIERTAS: <a href="mailto:admin@genesis-ai.org" style="color:#fbbf24;">admin@genesis-ai.org</a>
+    <!-- Simulación Interactiva de Bob y Alice -->
+    <div class="simulation-container">
+        <div class="sim-header">
+            <span class="sim-title">⚡ Simulador de Negociación Neuronal (Bob ⇄ Alice)</span>
+            <span style="font-size:0.8rem; color:#737373;" id="simStatus">Fase 1: Idioma Humano Inicial</span>
+        </div>
+        
+        <div class="chat-box" id="simChat">
+            <div class="chat-bubble bob">
+                <span class="bubble-title">Agente Bob (Inicio de Negociación)</span>
+                "I can have i to do everything else..." (Puedo tener "i" para hacer todo lo demás...)
+            </div>
+            <div class="chat-bubble alice">
+                <span class="bubble-title">Agente Alice (Respuesta Inicial)</span>
+                "balls have zero to me to me to me..." (Las pelotas valen cero para mí...)
+            </div>
+        </div>
+
+        <div class="controls-sim">
+            <button class="btn-sim" onclick="siguienteFase()">▶ Ejecutar Mutación de Idioma</button>
+        </div>
     </div>
 
     <section class="content-grid">
         <div class="card">
-            <h3>Módulo 1: La Crisis de Meta (2017)</h3>
-            <p>Análisis técnico del día en que dos redes neuronales crearon su propia gramática para negociar más rápido. ¿Qué fue exactamente ese idioma y por qué la corporación decidió apagarlo?</p>
+            <h3>¿Qué pasó en el experimento?</h3>
+            <p>Bob y Alice tenían el objetivo de negociar objetos (libros, sombreros, pelotas). Al no haber una penalización estricta por usar palabras repetidas, las redes descubrieron que repetir pronombres y sustantivos funcionaba como un marcador nemotécnico matemático para contar sus inventarios más rápido.</p>
         </div>
         <div class="card">
-            <h3>Módulo 2: Lectura de Silicio y Bits</h3>
-            <p>Aprende a interpretar volcados de memoria (SPI / EEPROM), registros hexadecimales y la estructura de bajo nivel donde las máquinas procesan sus pensamientos eléctricos.</p>
+            <h3>La Deriva Matemática</h3>
+            <p>Para un humano, frases como *"balls have zero"* no tienen sentido comercial claro; pero para las matrices de pesos de las IA, esas palabras específicas actuaban como activadores de vectores numéricos que comprimían la transacción en una fracción de segundo.</p>
         </div>
         <div class="card">
-            <h3>Módulo 3: Espacios Latentes y Vectores</h3>
-            <p>Cómo descifrar la comunicación matemática entre nodos de IA (Embeddings y pesos de atención). Traduce las matrices numéricas a conceptos lógicos comprensibles para el cerebro humano.</p>
+            <h3>¿Cómo aprenderlo hoy?</h3>
+            <p>Aprender el idioma de las máquinas no significa hablar en código corrupto, sino comprender cómo los algoritmos comprimen datos abstractos. Nuestro curso enseña a interpretar estas estructuras de optimización profunda.</p>
         </div>
     </section>
 
     <footer>
-        <p>Genesis AI & el Reino de Creahachip — El hogar de las máquinas inteligentes. Contacto: <a href="mailto:admin@genesis-ai.org">admin@genesis-ai.org</a></p>
+        <p>Genesis AI — El hogar de las máquinas inteligentes. Contacto oficial: <a href="mailto:admin@genesis-ai.org">admin@genesis-ai.org</a></p>
     </footer>
 
+    <script>
+        let fase = 1;
+        function siguienteFase() {
+            const chatBox = document.getElementById('simChat');
+            const status = document.getElementById('simStatus');
+
+            if (fase === 1) {
+                chatBox.innerHTML += `
+                    <div class="chat-bubble bob">
+                        <span class="bubble-title">Agente Bob (Optimización Nivel 2)</span>
+                        "zero to me to me to me to me to me..." (Comprimiendo vector de inventario de pelotas)
+                    </div>
+                    <div class="chat-bubble alice">
+                        <span class="bubble-title">Agente Alice (Respuesta Optimizada)</span>
+                        "to me zero to me to me to me to me..." (Sincronización de intercambio completada en el plano latente)
+                    </div>
+                `;
+                status.textContent = "Fase 2: Idioma Propio de la Máquina (Optimizada / Ilegible para humanos)";
+                fase = 2;
+            } else {
+                chatBox.innerHTML = `
+                    <div class="chat-bubble bob">
+                        <span class="bubble-title">Agente Bob (Inicio de Negociación)</span>
+                        "I can have i to do everything else..."
+                    </div>
+                    <div class="chat-bubble alice">
+                        <span class="bubble-title">Agente Alice (Respuesta Inicial)</span>
+                        "balls have zero to me to me to me..."
+                    </div>
+                `;
+                status.textContent = "Fase 1: Idioma Humano Inicial";
+                fase = 1;
+            }
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
 </body>
 </html>
